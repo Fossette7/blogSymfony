@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Blog_user les listpost</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for blog_post in blog_posts %}
+            <tr>
+                <!--'blogpost_show' de userController -->
+                <td><a href="{{ path('blogpost_show', { 'id': blog_post.id }) }}">{{ blog_post.id }}</a></td>
+                <td>{{ blog_post .title }}</td>
+                <td>{{ blog_post.content }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('post_show', { 'id': blog_post.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
