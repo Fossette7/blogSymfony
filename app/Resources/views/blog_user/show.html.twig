@@ -1,29 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>User_Blog_post</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ blog_post.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ blog_post.title }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ blog_post.content }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {# je crée ma zone de post#}
+            <div class="post-preview">
+                <a href="post/{{ blog_post.id }}">
+                    <p hidden>je suis un numéro id:{{blog_post.id}} </p>
+                    <h2 class="post-title">
+                        {#je récupère le titre du post#}
+                        {{ blog_post.title }}
+                    </h2>
+                    <h3 class="post-subtitle">
+                        {{ blog_post.content }}
+                    </h3>
+                </a>
+                {#j'ajoute la date de mise en ligne du post#}
+                {#<p class="post-meta">Posté le {{ blog_post.date_creation | date('d/m/Y', 'Europe/Paris') }}</p>#}
+            </div>
+            {# je crée ma partie commentaire#}
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mx-auto">
+                    <h4>Commentez ce blog post</h4>
+                </div>
+                <form name="ajouter un commentaire" method="post" action="">
+                    <div class="container">
+                        <div class="col-lg-4 col-md-6 mx-auto">
+                            Pseudo: <input type="text" name="pseudo"/> </br>
 
-    <ul>
-        <li>
-            <a href="{{ path('blog_user_index') }}">Back to the list</a>
-        </li>
+                            Votre commentaire <textarea name="comment" placeholder="Votre commentaire"> </textarea> </br>
+                        </div>
+                            <h5>Commentaire</h5>
+                        {# {{ oneComment.commentaire }} pour afficher les commentaires
+                                            {% for oneComment in comments %}
+                                                 {{ oneComment.texte }}
+                                                 <hr>
+                                             {% endfor %} #}
+                        <div class="col-lg-4 col-md-6 mx-auto">
+                            <input type="submit" name="valider" class="btn btn-primary" value="Valider"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="container"><a class="btn btn-primary float-right" href="{{path('blog_user_index')}}">Retour à l'accueil </a></div>
+        </div>
+    </div>
 
-    </ul>
 {% endblock %}
