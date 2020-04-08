@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-            <img src="../../img/Photo_Reybeka.png" alt="photo Reybeka Peyrat">
+            <img src="{{ asset('img/Photo_Reybeka.png') }}" alt="photo Reybeka Peyrat"/>
         </div>
     </div>
 
@@ -31,7 +31,6 @@
                            {# {{ blog_post.contenu | truncate(100) }} #}
                             {{ blog_post.content }}
                         </h3>
-                        {#<a class="btn"  href="{{path('blog_post', {id: Post.id})}}">Lire plus...</a>#}
                         <a class="btn"  href="{{path('blogpost_show', {id: blog_post.id})}}">Lire plus...</a>
                     </a>
 
@@ -39,7 +38,7 @@
                 <hr>
             {% endfor %}
 
-            <div class="clearfix"><a class="btn btn-primary float-right" href="#">En haut &rarr;</a></div>
+            <div class="clearfix"><a class="btn btn-primary float-right" href="#">En haut ↑</a></div>
         </div>
     </div>
 

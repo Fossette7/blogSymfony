@@ -22,6 +22,16 @@
             {# je crée ma partie commentaire#}
             <div class="row">
                 <div class="col-lg-4 col-md-6 mx-auto">
+                    {# lire les commentaires existants#}
+                   {# {% for blog_comment in blog_comments %}
+                    <tr>
+                        <td><a href="{{ path('comment_show', { 'id': blog_comment.id }) }}">{{ blog_comment.id }}</a></td>
+                        <td>{{ blog_comment.author }}</td>
+                        <td>{{ blog_comment.content }}</td>
+                        <td>{% if blog_comment.createdAt %}{{ blog_comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                     {% endfor %} #}
+
                     <h4>Commentez ce blog post</h4>
                 </div>
                 <form name="ajouter un commentaire" method="post" action="">

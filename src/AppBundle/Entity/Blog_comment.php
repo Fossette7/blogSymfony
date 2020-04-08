@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,10 +39,15 @@ class Blog_comment
     /**
      * @var Blog_post
      *
-     * @ORM\ManyToOne(targetEntity="Blog_post")
+     * @ORM\ManyToOne(targetEntity="Blog_post", inversedBy="Blog_comment")
      * @ORM\JoinColumn(name="Blog_post_id", referencedColumnName="id")
      */
     private $Blog_post;
+
+    public function __construct()
+    {
+        $this->Blog_post = new ArrayCollection();
+    }
 
 
     /**

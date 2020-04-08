@@ -45,11 +45,11 @@ class Blog_post
      * @ORM\OneToMany(targetEntity="Blog_comment", mappedBy="Blog_post")
      * @ORM\JoinColumn(name="Blog_comment_id", referencedColumnName="id")
      */
-    private $Blog_comments;
+    private $blog_comments;
 
     public function __construct()
     {
-        $this->Blog_comments = new ArrayCollection();
+        $this->blog_comments = new ArrayCollection();
     }
 
 
@@ -112,11 +112,11 @@ class Blog_post
     }
 
     /**
-     * @return Collection | Blog_comment[]
+     * @return Collection|Blog_comment[]
      */
     public function getBlogComments(): Collection
     {
-        return $this->Blog_comments;
+        return $this->blog_comments;
     }
 
     /**
@@ -124,6 +124,6 @@ class Blog_post
      */
     public function setBlogComments($Blog_comments)
     {
-        $this->Blog_comments = $Blog_comments;
+        $this->blog_comments = $Blog_comments;
     }
 }
