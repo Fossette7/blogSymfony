@@ -20,7 +20,7 @@
 
             {% for blog_post in blog_posts %}
                 <div class="post-preview">
-                    <a href="post/{{ blog_post.id }}">
+                    <a href="{{ path('blogpost_show', { id:blog_post.id }) }}">
                         <p hidden>je suis un numéro id:{{blog_post.id}}</p>
                         <h2 class="post-title">
                             {{ blog_post.title }}

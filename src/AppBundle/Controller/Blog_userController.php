@@ -46,7 +46,7 @@ class Blog_userController extends Controller
          * @Route("/blogpost/{id}", name="blogpost_show")
          * @Method("GET")
          */
-        public function showAction(Request $request,Blog_post $blog_post)
+        public function showAction(Blog_post $blog_post)
     {
 
 
