@@ -126,4 +126,25 @@ class Blog_post
     {
         $this->blog_comments = $Blog_comments;
     }
+
+    public function addBlogComment(Blog_comment $blog_comment): self
+    {
+        if(!$this->blog_comments->contains($blog_comment)) {
+            $this->blog_comments[] = $blog_comment;
+            $blog_comment->setBlogPost($this);
+        }
+        return $this;
+    }
+
+    public function removeBlogComment (Blog_comment $blog_comment): self
+    {
+        if($this->blog_comments->contains($blog_comment)){
+            $this->blog_comments->removeElement($blog_comment);
+            //become null
+            if ($blog_comment->getBlogPost() === $this) {
+                $blog_comment->setBlogPost(null);
+            }
+        }
+        return $this;
+    }
 }
