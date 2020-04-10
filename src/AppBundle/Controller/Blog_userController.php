@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Blog_comment;
 use AppBundle\Entity\Blog_post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -48,12 +49,11 @@ class Blog_userController extends Controller
          */
         public function showAction(Blog_post $blog_post)
     {
-
-
         //$deleteForm = $this->createDeleteForm($blog_post);
 
         return $this->render('blog_user/show.html.twig', array(
             'blog_post' => $blog_post,
+            'comments' => $blog_post->getBlogComments()
             //'delete_form' => $deleteForm->createView(),
         ));
     }

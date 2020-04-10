@@ -43,7 +43,6 @@ class Blog_post
      * @var Blog_comment
      *
      * @ORM\OneToMany(targetEntity="Blog_comment", mappedBy="Blog_post")
-     * @ORM\JoinColumn(name="Blog_comment_id", referencedColumnName="id")
      */
     private $blog_comments;
 
