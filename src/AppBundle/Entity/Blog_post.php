@@ -40,6 +40,14 @@ class Blog_post
     private $content;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+
+    /**
      * @var Blog_comment
      *
      * @ORM\OneToMany(targetEntity="Blog_comment", mappedBy="Blog_post")
@@ -117,6 +125,24 @@ class Blog_post
     {
         return $this->blog_comments;
     }
+
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
 
     /**
      * @param Blog_comment $Blog_comments

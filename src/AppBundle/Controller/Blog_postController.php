@@ -41,6 +41,7 @@ class Blog_postController extends Controller
     public function newAction(Request $request)
     {
         $blog_post = new Blog_post();
+        $blog_post->setCreatedAt(new\DateTime('now'));
         $form = $this->createForm('AppBundle\Form\Blog_postType', $blog_post);
         $form->handleRequest($request);
 
@@ -91,7 +92,6 @@ class Blog_postController extends Controller
 
             return $this->redirectToRoute('post_edit', array('id' => $blog_post->getId()));
         }
-
         return $this->render('blog_post/edit.html.twig', array(
             'blog_post' => $blog_post,
             'edit_form' => $editForm->createView(),

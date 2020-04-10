@@ -25,6 +25,7 @@
                         <h2 class="post-title">
                             {{ blog_post.title }}
                         </h2>
+                        <p>{{ blog_post.createdAt|date('d-m-Y H:i:s') }}</p>
                         {#<p class="post-meta">Posté le {{ blog_post.created }}</p>#}
                         <h3 class="post-subtitle">
                             {#je récupère le contenu en appliquant un truncate pour le châpo#}
