@@ -7,44 +7,46 @@
             {# je crée ma zone de post#}
             <div class="post-preview">
                     <p hidden>je suis un numéro id:{{blog_post.id}} </p>
-                    <h2 class="post-title">
+                        <h2 class="post-title">
                         {#je récupère le titre du post#}
                         {{ blog_post.title }}
-                    </h2>
+                        </h2>
                     <p class="post-subtitle">
                         {{ blog_post.content }}
                     </p>
                 {#j'ajoute la date de mise en ligne du post#}
                 {#<p class="post-meta">Posté le {{ blog_post.date_creation | date('d/m/Y', 'Europe/Paris') }}</p>#}
             </div>
+
             {# je crée ma partie commentaire#}
-            <div class="row">
-                <div class="col-lg-12 col-md-10 mx-auto">
-                    {# je crée ma zone de commentaire#}
-                    <div class="comment-preview">
-                    {# lire les commentaires existants#}
+                    <section id="commentaires">
+                        <h3>Commentaires</h3>
                         <hr>
-                    {% for blog_comment in blog_post.BlogComments %}
-                    <tr>
-                        <td><a href="{{ path('comment_show', { 'id': blog_comment.id }) }}">{{ blog_comment.id }}</a></td>
-                        <td>{{ blog_comment.author }}</td>
-                        <td>{{ blog_comment.content }}</td>
-                        <td>{% if blog_comment.createdAt %}{{ blog_comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>
+                        {% for blog_comment in blog_post.BlogComments %}
+                            <div class="comment">
+                             <div class="row">
+                                    <div class="col-3">
+                                    {{ blog_comment.author }} (<small>{{ blog_comment.createdAt|date('d-m-Y H:i') }}</small>)
+                                    </div>
+                                    <div class="col-9">
+                                    {{ blog_comment.content | raw  }}
+                                    </div>
+                                </div>
+                            </div>
                             <hr>
-                     {% endfor %}
-                    </div>
+                        {% endfor %}
+                    </section>
 
                     <h4>Commentez ce blog post</h4>
                 <form name="ajouter un commentaire" method="post" action="">
                     <div class="container">
-                        <div class="col-lg-3 col-md-6 mx-auto">
-                            Pseudo: <input type="text" name="pseudo"/> </br>
+                        <div class="col-lg-6 col-md-6 mx-auto">
+                            Pseudo: <input type="text" name="author"/> </br>
                             Votre commentaire <textarea name="comment" placeholder="Votre commentaire"> </textarea> </br>
                         </div>
 
 
-                        <div class="col-lg-4 col-md-6 mx-auto">
+                        <div class="col-lg-6 col-md-6 mx-auto">
                             <input type="submit" name="valider" class="btn btn-primary" value="Valider"/>
                         </div>
                     </div>
