@@ -43,18 +43,16 @@ class Blog_userController extends Controller
     }
 
         /**
-         * Finds and displays a blog_post entity.
+         * Finds and displays a blog_post entity & comments entity.
          *
          * @Route("/blogpost/{id}", name="blogpost_show")
          * @Method("GET")
          */
+        //Affichage d'un article et ses commentaires
         //Request permet de recevoir les données du formulaire
         public function showAction(Blog_post $blog_post, Request $request)
     {
-        //$deleteForm = $this->createDeleteForm($blog_post);
-
         //On instancie l'entité Blog_comment
-
         $comment = new Blog_comment();
 
         //création de l'objet formulaire
@@ -83,7 +81,6 @@ class Blog_userController extends Controller
             'blog_post' => $blog_post,
             'comments' => $blog_post->getBlogComments(),
             'formComment' => $form->createView()
-            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
