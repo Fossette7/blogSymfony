@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Blog_comment;
 use AppBundle\Entity\Blog_post;
+use AppBundle\Form\Blog_commentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -47,14 +48,44 @@ class Blog_userController extends Controller
          * @Route("/blogpost/{id}", name="blogpost_show")
          * @Method("GET")
          */
-        public function showAction(Blog_post $blog_post)
+        //Request permet de recevoir les données du formulaire
+        public function showAction(Blog_post $blog_post, Request $request)
     {
         //$deleteForm = $this->createDeleteForm($blog_post);
 
+        //On instancie l'entité Blog_comment
+
+        $comment = new Blog_comment();
+
+        //création de l'objet formulaire
+        $form = $this->createForm(Blog_commentType::class, $comment);
+
+        //On récupère les données saisies du form
+        $form->handleRequest($request);
+
+        //On vérifie si form a été envoyé et est valide
+        if($form->isSubmitted()&& $form->isValid()){
+            //on entre dans la condition
+            $comment->setBlogPost($blog_post);
+            $comment->setCreatedAt( new \DateTime('now'));
+
+            //On hydrate notre objet pour alimenter la BDD, instance de doctrine
+            $doctrine = $this->getDoctrine()->getManager();
+
+            //On hydrate $comment
+            $doctrine->persist($comment);
+
+            //On enregistre dans la BDD
+            $doctrine->flush();
+        }
+
         return $this->render('blog_user/show.html.twig', array(
             'blog_post' => $blog_post,
-            'comments' => $blog_post->getBlogComments()
+            'comments' => $blog_post->getBlogComments(),
+            'formComment' => $form->createView()
             //'delete_form' => $deleteForm->createView(),
         ));
     }
+
+
     }
