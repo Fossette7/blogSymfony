@@ -54,6 +54,11 @@ class Blog_post
      */
     private $blog_comments;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="posts")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->blog_comments = new ArrayCollection();
@@ -155,8 +160,7 @@ class Blog_post
     public function addBlogComment(Blog_comment $blog_comment): self
     {
         if(!$this->blog_comments->contains($blog_comment)) {
-            $this->blog_comments[] = $blog_comment;
-            $blog_comment->setBlogPost($this);
+            $this->blog_comments->add($blog_comment);
         }
         return $this;
     }
@@ -165,11 +169,23 @@ class Blog_post
     {
         if($this->blog_comments->contains($blog_comment)){
             $this->blog_comments->removeElement($blog_comment);
-            //become null
-            if ($blog_comment->getBlogPost() === $this) {
-                $blog_comment->setBlogPost(null);
-            }
         }
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
 }

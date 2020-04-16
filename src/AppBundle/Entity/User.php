@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,6 +50,15 @@ class User
      */
     private $isActive;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Blog_post", mappedBy="user")
+     */
+    private $posts;
+
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -154,5 +164,39 @@ class User
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
+    /**
+     * @param Blog_post $post
+     * @return User
+     */
+    public function addPost(Blog_post $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $this->posts->add($post);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Blog_post $post
+     * @return User
+     */
+    public function removePost(Blog_post $post): self
+    {
+        if ($this->posts->contains($post)) {
+            $this->posts->remove($post);
+        }
+
+        return $this;
     }
 }
