@@ -6,12 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * BlogComment
+ * Comment
  *
- * @ORM\Table(name="BlogComment")
+ * @ORM\Table(name="Comment")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BlogCommentRepository")
  */
-class BlogComment
+class Comment
 {
     /**
      * @var int
@@ -45,7 +45,7 @@ class BlogComment
     private $content;
 
     /**
-     * @var BlogPost
+     * @var Post
      *
      * @ORM\ManyToOne(targetEntity="BlogPost", inversedBy="BlogComments")
      */
@@ -75,7 +75,7 @@ class BlogComment
      *
      * @param string $author
      *
-     * @return BlogComment
+     * @return Comment
      */
     public function setAuthor($author)
     {
@@ -115,7 +115,7 @@ class BlogComment
      *
      * @param string $content
      *
-     * @return BlogComment
+     * @return Comment
      */
     public function setContent($content)
     {
@@ -135,7 +135,7 @@ class BlogComment
     }
 
     /**
-     * @return BlogPost
+     * @return Post
      */
     public function getBlogPost()
     {
@@ -143,7 +143,7 @@ class BlogComment
     }
 
     /**
-     * @param BlogPost $BlogPost
+     * @param Post $BlogPost
      */
     public function setBlogPost($blogPost)
     {
@@ -155,7 +155,7 @@ class BlogComment
      *
      * @param \DateTime $createdAt
      *
-     * @return BlogComment
+     * @return Comment
      */
     public function setCreatedAt($createdAt)
     {

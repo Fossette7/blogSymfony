@@ -175,10 +175,10 @@ class User
     }
 
     /**
-     * @param BlogPost $post
+     * @param Post $post
      * @return User
      */
-    public function addPost(BlogPost $post): self
+    public function addPost(Post $post): self
     {
         if (!$this->posts->contains($post)) {
             $this->posts->add($post);
@@ -188,10 +188,10 @@ class User
     }
 
     /**
-     * @param BlogPost $post
+     * @param Post $post
      * @return User
      */
-    public function removePost(BlogPost $post): self
+    public function removePost(Post $post): self
     {
         if ($this->posts->contains($post)) {
             $this->posts->remove($post);

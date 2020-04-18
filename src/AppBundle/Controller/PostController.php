@@ -2,21 +2,21 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\BlogPost;
+use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * BlogPost controller.
+ * Post controller.
  *
  * @Route("post")
  */
-class BlogPostController extends Controller
+class PostController extends Controller
 {
     /**
-     * Lists all BlogPost entities.
+     * Lists all Post entities.
      *
      * @Route("/", name="post_index")
      * @Method("GET")
@@ -25,22 +25,22 @@ class BlogPostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $BlogPosts = $em->getRepository('AppBundle:BlogPost')->findAll();
+        $BlogPosts = $em->getRepository('AppBundle:Post')->findAll();
 
-        return $this->render('BlogPost/index.html.twig', array(
+        return $this->render('Post/index.html.twig', array(
             'BlogPosts' => $BlogPosts,
         ));
     }
 
     /**
-     * Creates a new BlogPost entity.
+     * Creates a new Post entity.
      *
      * @Route("/new", name="post_new")
      * @Method({"GET", "POST"})
      */
     public function createPost(Request $request)
     {
-        $BlogPost = new BlogPost();
+        $BlogPost = new Post();
         $BlogPost->setCreatedAt(new\DateTime('now'));
         $form = $this->createForm('AppBundle\Form\BlogPostType', $BlogPost);
         $form->handleRequest($request);
@@ -53,32 +53,32 @@ class BlogPostController extends Controller
             return $this->redirectToRoute('post_show', array('id' => $BlogPost->getId()));
         }
 
-        return $this->render('BlogPost/new.html.twig', array(
-            'BlogPost' => $BlogPost,
+        return $this->render('Post/new.html.twig', array(
+            'Post' => $BlogPost,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a BlogPost entity.
+     * Finds and displays a Post entity.
      *
      * @Route("/{id}", name="post_show")
      * @Method("GET")
      */
-    public function showPost(Request $request, BlogPost $BlogPost)
+    public function showPost(Request $request, Post $BlogPost)
     {
-        return $this->render('BlogPost/show.html.twig', array(
-            'BlogPost' => $BlogPost
+        return $this->render('Post/show.html.twig', array(
+            'Post' => $BlogPost
         ));
     }
 
     /**
-     * Displays a form to edit an existing BlogPost entity.
+     * Displays a form to edit an existing Post entity.
      *
      * @Route("/edit/{id}", name="post_edit")
      * @Method({"GET", "POST"})
      */
-    public function editPost(Request $request, BlogPost $BlogPost)
+    public function editPost(Request $request, Post $BlogPost)
     {
         $deleteForm = $this->createDeleteForm($BlogPost);
         $editForm = $this->createForm('AppBundle\Form\BlogPostType', $BlogPost);
@@ -89,7 +89,7 @@ class BlogPostController extends Controller
 
             return $this->redirectToRoute('post_edit', array('id' => $BlogPost->getId()));
         }
-        return $this->render('BlogPost/edit.html.twig', array(
+        return $this->render('Post/edit.html.twig', array(
             'blog_post' => $BlogPost,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -97,12 +97,12 @@ class BlogPostController extends Controller
     }
 
     /**
-     * Deletes a BlogPost entity.
+     * Deletes a Post entity.
      *
      * @Route("/{id}", name="post_delete")
      * @Method("DELETE")
      */
-    public function deletePost(Request $request, BlogPost $BlogPost)
+    public function deletePost(Request $request, Post $BlogPost)
     {
         $form = $this->createDeleteForm($BlogPost);
         $form->handleRequest($request);
@@ -117,13 +117,13 @@ class BlogPostController extends Controller
     }
 
     /**
-     * Creates a form to delete a BlogPost entity.
+     * Creates a form to delete a Post entity.
      *
-     * @param BlogPost $BlogPost The BlogPost entity
+     * @param Post $BlogPost The Post entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(BlogPost $BlogPost)
+    private function createDeleteForm(Post $BlogPost)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('post_delete', array('id' => $BlogPost->getId())))

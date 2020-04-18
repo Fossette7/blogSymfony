@@ -2,7 +2,7 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\BlogComment;
+use AppBundle\Entity\Comment;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -42,7 +42,7 @@ class BlogCommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => BlogComment::class,
+            'data_class' => Comment::class,
                 ]);
     }
 

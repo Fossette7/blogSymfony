@@ -9,7 +9,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Blog_comment;
-use AppBundle\Entity\BlogPost;
+use AppBundle\Entity\Post;
 use AppBundle\Form\BlogCommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -22,10 +22,10 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("listpost")
  */
-class BlogUserController extends Controller
+class HomeController extends Controller
 {
     /**
-     * Lists all BlogPost entities.
+     * Lists all Post entities.
      *
      * @Route("/", name="blog_user_index")
      * @Method("GET")
@@ -34,7 +34,7 @@ class BlogUserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         //repository est pour selectionner une entity
-        $BlogPosts = $em->getRepository('AppBundle:BlogPost')->findAll();
+        $BlogPosts = $em->getRepository('AppBundle:Post')->findAll();
 
         //je retourne une vue seulement pour visionner les posts
         return $this->render('blog_user/index.html.twig', array(
@@ -43,14 +43,14 @@ class BlogUserController extends Controller
     }
 
         /**
-         * Finds and displays a BlogPost entity & comments entity.
+         * Finds and displays a Post entity & comments entity.
          *
          * @Route("/blogpost/{id}", name="blogpost_show")
          * @Method("GET")
          */
         //Affichage d'un article et ses commentaires
         //Request permet de recevoir les données du formulaire
-        public function showAction(BlogPost $BlogPost, Request $request)
+        public function showAction(Post $BlogPost, Request $request)
     {
         //On instancie l'entité Blog_comment
         $comment = new BlogComment();
@@ -78,7 +78,7 @@ class BlogUserController extends Controller
         }
 
         return $this->render('blog_user/show.html.twig', array(
-            'BlogPost' => $BlogPost,
+            'Post' => $BlogPost,
             'comments' => $BlogPost->getBlogComments(),
             'formComment' => $form->createView()
         ));

@@ -7,12 +7,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * BlogPost
+ * Post
  *
  * @ORM\Table(name="blog_post")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BlogPostRepository")
  */
-class BlogPost
+class Post
 {
     /**
      * @var int
@@ -48,9 +48,9 @@ class BlogPost
 
 
     /**
-     * @var BlogComment
+     * @var Comment
      *
-     * @ORM\OneToMany(targetEntity="BlogComment", mappedBy="BlogPost")
+     * @ORM\OneToMany(targetEntity="BlogComment", mappedBy="Post")
      */
     private $BlogComments;
 
@@ -80,7 +80,7 @@ class BlogPost
      *
      * @param string $title
      *
-     * @return BlogPost
+     * @return Post
      */
     public function setTitle($title)
     {
@@ -104,7 +104,7 @@ class BlogPost
      *
      * @param string $content
      *
-     * @return BlogPost
+     * @return Post
      */
     public function setContent($content)
     {
@@ -124,7 +124,7 @@ class BlogPost
     }
 
     /**
-     * @return Collection|BlogComment[]
+     * @return Collection|Comment[]
      */
     public function getBlogComments(): Collection
     {
@@ -150,14 +150,14 @@ class BlogPost
 
 
     /**
-     * @param BlogComment $BlogComments
+     * @param Comment $BlogComments
      */
     public function setBlogComments($BlogComments)
     {
         $this->BlogComments = $BlogComments;
     }
 
-    public function addBlogComment(BlogComment $BlogComment): self
+    public function addBlogComment(Comment $BlogComment): self
     {
         if(!$this->BlogComments->contains($BlogComment)) {
             $this->BlogComments->add($BlogComment);
@@ -165,7 +165,7 @@ class BlogPost
         return $this;
     }
 
-    public function removeBlogComment (BlogComment $BlogComment): self
+    public function removeBlogComment (Comment $BlogComment): self
     {
         if($this->BlogComments->contains($BlogComment)){
             $this->BlogComments->removeElement($BlogComment);
