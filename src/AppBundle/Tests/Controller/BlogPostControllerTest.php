@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class Blog_postControllerTest extends WebTestCase
+class BlogPostControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -19,7 +19,7 @@ class Blog_postControllerTest extends WebTestCase
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'appbundle_blog_post[field_name]'  => 'Test',
+            'appbundle_BlogPost[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class Blog_postControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Update')->form(array(
-            'appbundle_blog_post[field_name]'  => 'Foo',
+            'appbundle_BlogPost[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 

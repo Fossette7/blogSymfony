@@ -51,7 +51,7 @@ class User
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Blog_post", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\BlogPost", mappedBy="user")
      */
     private $posts;
 
@@ -175,10 +175,10 @@ class User
     }
 
     /**
-     * @param Blog_post $post
+     * @param BlogPost $post
      * @return User
      */
-    public function addPost(Blog_post $post): self
+    public function addPost(BlogPost $post): self
     {
         if (!$this->posts->contains($post)) {
             $this->posts->add($post);
@@ -188,10 +188,10 @@ class User
     }
 
     /**
-     * @param Blog_post $post
+     * @param BlogPost $post
      * @return User
      */
-    public function removePost(Blog_post $post): self
+    public function removePost(BlogPost $post): self
     {
         if ($this->posts->contains($post)) {
             $this->posts->remove($post);

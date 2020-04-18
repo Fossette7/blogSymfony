@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Blog_posts list</h1>
+    <h1>BlogPosts list</h1>
 
     <table>
         <thead>
@@ -13,18 +13,18 @@
             </tr>
         </thead>
         <tbody>
-        {% for blog_post in blog_posts %}
+        {% for BlogPost in BlogPosts %}
             <tr>
-                <td><a href="{{ path('post_show', { 'id': blog_post.id }) }}">{{ blog_post.id }}</a></td>
-                <td>{{ blog_post.title }}</td>
-                <td>{{ blog_post.content }}</td>
+                <td><a href="{{ path('post_show', { 'id': BlogPost.id }) }}">{{ BlogPost.id }}</a></td>
+                <td>{{ BlogPost.title }}</td>
+                <td>{{ BlogPost.content }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('post_show', { 'id': blog_post.id }) }}">show</a>
+                            <a href="{{ path('post_show', { 'id': BlogPost.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('post_edit', { 'id': blog_post.id }) }}">edit</a>
+                            <a href="{{ path('post_edit', { 'id': BlogPost.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -35,7 +35,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('post_new') }}">Create a new blog_post</a>
+            <a href="{{ path('post_new') }}">Create a new BlogPost</a>
         </li>
     </ul>
 {% endblock %}

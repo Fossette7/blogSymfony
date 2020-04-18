@@ -7,12 +7,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Blog_post
+ * BlogPost
  *
  * @ORM\Table(name="blog_post")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Blog_postRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BlogPostRepository")
  */
-class Blog_post
+class BlogPost
 {
     /**
      * @var int
@@ -48,11 +48,11 @@ class Blog_post
 
 
     /**
-     * @var Blog_comment
+     * @var BlogComment
      *
-     * @ORM\OneToMany(targetEntity="Blog_comment", mappedBy="Blog_post")
+     * @ORM\OneToMany(targetEntity="BlogComment", mappedBy="BlogPost")
      */
-    private $blog_comments;
+    private $BlogComments;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="posts")
@@ -61,7 +61,7 @@ class Blog_post
 
     public function __construct()
     {
-        $this->blog_comments = new ArrayCollection();
+        $this->BlogComments = new ArrayCollection();
     }
 
 
@@ -80,7 +80,7 @@ class Blog_post
      *
      * @param string $title
      *
-     * @return Blog_post
+     * @return BlogPost
      */
     public function setTitle($title)
     {
@@ -104,7 +104,7 @@ class Blog_post
      *
      * @param string $content
      *
-     * @return Blog_post
+     * @return BlogPost
      */
     public function setContent($content)
     {
@@ -124,11 +124,11 @@ class Blog_post
     }
 
     /**
-     * @return Collection|Blog_comment[]
+     * @return Collection|BlogComment[]
      */
     public function getBlogComments(): Collection
     {
-        return $this->blog_comments;
+        return $this->BlogComments;
     }
 
 
@@ -150,25 +150,25 @@ class Blog_post
 
 
     /**
-     * @param Blog_comment $Blog_comments
+     * @param BlogComment $BlogComments
      */
-    public function setBlogComments($Blog_comments)
+    public function setBlogComments($BlogComments)
     {
-        $this->blog_comments = $Blog_comments;
+        $this->BlogComments = $BlogComments;
     }
 
-    public function addBlogComment(Blog_comment $blog_comment): self
+    public function addBlogComment(BlogComment $BlogComment): self
     {
-        if(!$this->blog_comments->contains($blog_comment)) {
-            $this->blog_comments->add($blog_comment);
+        if(!$this->BlogComments->contains($BlogComment)) {
+            $this->BlogComments->add($BlogComment);
         }
         return $this;
     }
 
-    public function removeBlogComment (Blog_comment $blog_comment): self
+    public function removeBlogComment (BlogComment $BlogComment): self
     {
-        if($this->blog_comments->contains($blog_comment)){
-            $this->blog_comments->removeElement($blog_comment);
+        if($this->BlogComments->contains($BlogComment)){
+            $this->BlogComments->removeElement($BlogComment);
         }
         return $this;
     }

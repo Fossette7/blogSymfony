@@ -6,12 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Blog_comment
+ * BlogComment
  *
- * @ORM\Table(name="blog_comment")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Blog_commentRepository")
+ * @ORM\Table(name="BlogComment")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BlogCommentRepository")
  */
-class Blog_comment
+class BlogComment
 {
     /**
      * @var int
@@ -45,11 +45,11 @@ class Blog_comment
     private $content;
 
     /**
-     * @var Blog_post
+     * @var BlogPost
      *
-     * @ORM\ManyToOne(targetEntity="Blog_post", inversedBy="blog_comments")
+     * @ORM\ManyToOne(targetEntity="BlogPost", inversedBy="BlogComments")
      */
-    private $Blog_post;
+    private $blogPost;
 
 
     /**
@@ -75,7 +75,7 @@ class Blog_comment
      *
      * @param string $author
      *
-     * @return Blog_comment
+     * @return BlogComment
      */
     public function setAuthor($author)
     {
@@ -115,7 +115,7 @@ class Blog_comment
      *
      * @param string $content
      *
-     * @return Blog_comment
+     * @return BlogComment
      */
     public function setContent($content)
     {
@@ -135,19 +135,19 @@ class Blog_comment
     }
 
     /**
-     * @return Blog_post
+     * @return BlogPost
      */
     public function getBlogPost()
     {
-        return $this->Blog_post;
+        return $this->blogPost;
     }
 
     /**
-     * @param Blog_post $Blog_post
+     * @param BlogPost $BlogPost
      */
-    public function setBlogPost($Blog_post)
+    public function setBlogPost($blogPost)
     {
-        $this->Blog_post = $Blog_post;
+        $this->BlogPost = $blogPost;
     }
 
     /**
@@ -155,7 +155,7 @@ class Blog_comment
      *
      * @param \DateTime $createdAt
      *
-     * @return Blog_comment
+     * @return BlogComment
      */
     public function setCreatedAt($createdAt)
     {

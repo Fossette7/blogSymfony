@@ -2,7 +2,7 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Blog_comment;
+use AppBundle\Entity\BlogComment;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class Blog_commentType extends AbstractType
+class BlogCommentType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -42,7 +42,7 @@ class Blog_commentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Blog_comment::class,
+            'data_class' => BlogComment::class,
                 ]);
     }
 
@@ -51,7 +51,7 @@ class Blog_commentType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_blog_comment';
+        return 'appbundle_blogComment';
     }
 
 

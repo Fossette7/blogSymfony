@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Blog_post</h1>
+    <h1>BlogPost</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ blog_post.id }}</td>
+                <td>{{ BlogPost.id }}</td>
             </tr>
             <tr>
                 <th>Title</th>
-                <td>{{ blog_post.title }}</td>
+                <td>{{ BlogPost.title }}</td>
             </tr>
             <tr>
                 <th>Content</th>
-                <td>{{ blog_post.content }}</td>
+                <td>{{ BlogPost.content }}</td>
             </tr>
         </tbody>
     </table>
@@ -25,7 +25,7 @@
             <a href="{{ path('post_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('post_edit', { 'id': blog_post.id }) }}">Edit</a>
+            <a href="{{ path('post_edit', { 'id': BlogPost.id }) }}">Edit</a>
         </li>
     </ul>
 {% endblock %}

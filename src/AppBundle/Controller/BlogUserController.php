@@ -9,8 +9,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Blog_comment;
-use AppBundle\Entity\Blog_post;
-use AppBundle\Form\Blog_commentType;
+use AppBundle\Entity\BlogPost;
+use AppBundle\Form\BlogCommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,10 +22,10 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("listpost")
  */
-class Blog_userController extends Controller
+class BlogUserController extends Controller
 {
     /**
-     * Lists all blog_post entities.
+     * Lists all BlogPost entities.
      *
      * @Route("/", name="blog_user_index")
      * @Method("GET")
@@ -34,29 +34,29 @@ class Blog_userController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         //repository est pour selectionner une entity
-        $blog_posts = $em->getRepository('AppBundle:Blog_post')->findAll();
+        $BlogPosts = $em->getRepository('AppBundle:BlogPost')->findAll();
 
         //je retourne une vue seulement pour visionner les posts
         return $this->render('blog_user/index.html.twig', array(
-            'blog_posts' => $blog_posts,
+            'BlogPosts' => $BlogPosts,
         ));
     }
 
         /**
-         * Finds and displays a blog_post entity & comments entity.
+         * Finds and displays a BlogPost entity & comments entity.
          *
          * @Route("/blogpost/{id}", name="blogpost_show")
          * @Method("GET")
          */
         //Affichage d'un article et ses commentaires
         //Request permet de recevoir les données du formulaire
-        public function showAction(Blog_post $blog_post, Request $request)
+        public function showAction(BlogPost $BlogPost, Request $request)
     {
         //On instancie l'entité Blog_comment
-        $comment = new Blog_comment();
+        $comment = new BlogComment();
 
         //création de l'objet formulaire
-        $form = $this->createForm(Blog_commentType::class, $comment);
+        $form = $this->createForm(BlogCommentType::class, $comment);
 
         //On récupère les données saisies du form
         $form->handleRequest($request);
@@ -64,7 +64,7 @@ class Blog_userController extends Controller
         //On vérifie si form a été envoyé et est valide
         if($form->isSubmitted()&& $form->isValid()){
             //on entre dans la condition
-            $comment->setBlogPost($blog_post);
+            $comment->setBlogPost($BlogPost);
             $comment->setCreatedAt( new \DateTime('now'));
 
             //On hydrate notre objet pour alimenter la BDD, instance de doctrine
@@ -78,8 +78,8 @@ class Blog_userController extends Controller
         }
 
         return $this->render('blog_user/show.html.twig', array(
-            'blog_post' => $blog_post,
-            'comments' => $blog_post->getBlogComments(),
+            'BlogPost' => $BlogPost,
+            'comments' => $BlogPost->getBlogComments(),
             'formComment' => $form->createView()
         ));
     }
