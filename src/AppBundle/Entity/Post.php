@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Post
  *
- * @ORM\Table(name="blog_post")
+ * @ORM\Table(name="Post")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BlogPostRepository")
  */
 class Post
@@ -50,9 +50,9 @@ class Post
     /**
      * @var Comment
      *
-     * @ORM\OneToMany(targetEntity="BlogComment", mappedBy="Post")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="Post")
      */
-    private $BlogComments;
+    private $comments;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="posts")
@@ -61,7 +61,7 @@ class Post
 
     public function __construct()
     {
-        $this->BlogComments = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
 
@@ -126,9 +126,9 @@ class Post
     /**
      * @return Collection|Comment[]
      */
-    public function getBlogComments(): Collection
+    public function getcomments(): Collection
     {
-        return $this->BlogComments;
+        return $this->comments;
     }
 
 
@@ -150,25 +150,25 @@ class Post
 
 
     /**
-     * @param Comment $BlogComments
+     * @param Comment $comments
      */
-    public function setBlogComments($BlogComments)
+    public function setcomments($comments)
     {
-        $this->BlogComments = $BlogComments;
+        $this->comments = $comments;
     }
 
-    public function addBlogComment(Comment $BlogComment): self
+    public function addcomment(Comment $comment): self
     {
-        if(!$this->BlogComments->contains($BlogComment)) {
-            $this->BlogComments->add($BlogComment);
+        if(!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
         }
         return $this;
     }
 
-    public function removeBlogComment (Comment $BlogComment): self
+    public function removecomment (Comment $comment): self
     {
-        if($this->BlogComments->contains($BlogComment)){
-            $this->BlogComments->removeElement($BlogComment);
+        if($this->comments->contains($comment)){
+            $this->comments->removeElement($comment);
         }
         return $this;
     }

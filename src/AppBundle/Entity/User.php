@@ -51,7 +51,7 @@ class User
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\BlogPost", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="user")
      */
     private $posts;
 
