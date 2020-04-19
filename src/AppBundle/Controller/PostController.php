@@ -42,7 +42,7 @@ class PostController extends Controller
     {
         $BlogPost = new Post();
         $BlogPost->setCreatedAt(new\DateTime('now'));
-        $form = $this->createForm('AppBundle\Form\BlogPostType', $BlogPost);
+        $form = $this->createForm('AppBundle\Form\PostType', $BlogPost);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -81,7 +81,7 @@ class PostController extends Controller
     public function editPost(Request $request, Post $BlogPost)
     {
         $deleteForm = $this->createDeleteForm($BlogPost);
-        $editForm = $this->createForm('AppBundle\Form\BlogPostType', $BlogPost);
+        $editForm = $this->createForm('AppBundle\Form\PostType', $BlogPost);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
