@@ -38,7 +38,7 @@ class HomeController extends Controller
 
         //je retourne une vue seulement pour visionner les posts
         return $this->render('blog_user/index.html.twig', array(
-            'BlogPosts' => $BlogPosts,
+            'blog_posts' => $BlogPosts,
         ));
     }
 
@@ -53,7 +53,7 @@ class HomeController extends Controller
         public function showAction(Post $BlogPost, Request $request)
     {
         //On instancie l'entité Blog_comment
-        $comment = new BlogComment();
+        $comment = new Comment();
 
         //création de l'objet formulaire
         $form = $this->createForm(BlogCommentType::class, $comment);
@@ -79,7 +79,7 @@ class HomeController extends Controller
 
         return $this->render('blog_user/show.html.twig', array(
             'Post' => $BlogPost,
-            'comments' => $BlogPost->getBlogComments(),
+            'comments' => $BlogPost->getComments(),
             'formComment' => $form->createView()
         ));
     }
