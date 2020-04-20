@@ -42,7 +42,7 @@ class CommentController extends Controller
     {
         $BlogComment = new Comment();
         $BlogComment->setCreatedAt(new\DateTime('now'));
-        $form = $this->createForm('AppBundle\Form\BlogCommentType', $BlogComment);
+        $form = $this->createForm('AppBundle\Form\CommentType', $BlogComment);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -84,7 +84,7 @@ class CommentController extends Controller
     public function editComment(Request $request, Comment $BlogComment)
     {
         $deleteForm = $this->createDeleteForm($BlogComment);
-        $editForm = $this->createForm('AppBundle\Form\BlogCommentType', $BlogComment);
+        $editForm = $this->createForm('AppBundle\Form\CommentType', $BlogComment);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

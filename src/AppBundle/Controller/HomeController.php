@@ -8,9 +8,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Blog_comment;
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Post;
-use AppBundle\Form\BlogCommentType;
+use AppBundle\Form\CommentType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -37,7 +37,7 @@ class HomeController extends Controller
         $BlogPosts = $em->getRepository('AppBundle:Post')->findAll();
 
         //je retourne une vue seulement pour visionner les posts
-        return $this->render('blog_user/index.html.twig', array(
+        return $this->render('home/index.html.twig', array(
             'blog_posts' => $BlogPosts,
         ));
     }
@@ -56,7 +56,7 @@ class HomeController extends Controller
         $comment = new Comment();
 
         //création de l'objet formulaire
-        $form = $this->createForm(BlogCommentType::class, $comment);
+        $form = $this->createForm(CommentType::class, $comment);
 
         //On récupère les données saisies du form
         $form->handleRequest($request);
@@ -77,7 +77,7 @@ class HomeController extends Controller
             $doctrine->flush();
         }
 
-        return $this->render('blog_user/show.html.twig', array(
+        return $this->render('home/show.html.twig', array(
             'Post' => $BlogPost,
             'comments' => $BlogPost->getComments(),
             'formComment' => $form->createView()

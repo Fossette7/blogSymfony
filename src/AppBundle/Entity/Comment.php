@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Comment
  *
  * @ORM\Table(name="Comment")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\BlogCommentRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentRepository")
  */
 class Comment
 {
@@ -49,7 +49,7 @@ class Comment
      *
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
      */
-    private $blogPost;
+    private $post;
 
 
     /**
@@ -137,17 +137,17 @@ class Comment
     /**
      * @return Post
      */
-    public function getBlogPost()
+    public function getpost()
     {
-        return $this->blogPost;
+        return $this->post;
     }
 
     /**
-     * @param Post $BlogPost
+     * @param Post $post
      */
-    public function setBlogPost($blogPost)
+    public function setpost($post)
     {
-        $this->BlogPost = $blogPost;
+        $this->post = $post;
     }
 
     /**
