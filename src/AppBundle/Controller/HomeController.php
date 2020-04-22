@@ -27,7 +27,7 @@ class HomeController extends Controller
     /**
      * Lists all Post entities.
      *
-     * @Route("/", name="blog_user_index")
+     * @Route("/", name="home_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -38,15 +38,16 @@ class HomeController extends Controller
 
         //je retourne une vue seulement pour visionner les posts
         return $this->render('home/index.html.twig', array(
-            //nom que l'on donne à chaque élément du tableau => nom de la variable qui contient le repository de l'objet
-            'eachPost' => $allPosts,
+            //nom de la variable twig qui représente notre tableau => nom de la variable qui contient le repository de l'objet
+            //donc nos éléments du tableau
+            'allPosts' => $allPosts,
         ));
     }
 
         /**
          * Finds and displays a Post entity & comments entity.
          *
-         * @Route("/blogpost/{id}", name="blogpost_show")
+         * @Route("/blogpost/{id}", name="home_post_show")
          * @Method("GET")
          */
         //Affichage d'un article et ses commentaires
@@ -54,7 +55,7 @@ class HomeController extends Controller
         //Request permet de recevoir les données du formulaire
         public function showAction(Post $post, Request $request)
     {
-        //On instancie l'entité Blog_comment
+        //On instancie l'entité Comment
         $comment = new Comment();
 
         //création de l'objet formulaire
@@ -80,9 +81,10 @@ class HomeController extends Controller
         }
 
         return $this->render('home/show.html.twig', array(
-            'post' => $allPosts,
+            'post' => $form,
             'comments' => $post->getComments(),
-            'formComment' => $form->createView()
+            'formComment' => $form->createView(),
+            'currentPost' => $post,
         ));
     }
 

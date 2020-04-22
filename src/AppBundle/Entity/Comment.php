@@ -140,7 +140,7 @@ class Comment
     /**
      * @return Post
      */
-    public function getpost()
+    public function getPost()
     {
         return $this->post;
     }
@@ -148,7 +148,7 @@ class Comment
     /**
      * @param Post $post
      */
-    public function setpost($post)
+    public function setPost($post)
     {
         $this->post = $post;
     }

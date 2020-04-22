@@ -7,15 +7,15 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ BlogPost.id }}</td>
+                <td>{{ Post.id }}</td>
             </tr>
             <tr>
                 <th>Title</th>
-                <td>{{ BlogPost.title }}</td>
+                <td>{{ Post.title }}</td>
             </tr>
             <tr>
                 <th>Content</th>
-                <td>{{ BlogPost.content }}</td>
+                <td>{{ Post.content }}</td>
             </tr>
         </tbody>
     </table>
@@ -25,7 +25,7 @@
             <a href="{{ path('post_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('post_edit', { 'id': BlogPost.id }) }}">Edit</a>
+            <a href="{{ path('post_edit', { 'id': Post.id }) }}">Edit</a>
         </li>
     </ul>
 {% endblock %}
