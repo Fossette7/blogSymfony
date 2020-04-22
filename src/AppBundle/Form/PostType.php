@@ -35,7 +35,7 @@ class PostType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_blogPost';
+        return 'appbundle_post';
     }
 
 

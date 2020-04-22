@@ -51,7 +51,7 @@ class CommentType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_blogComment';
+        return 'appbundle_comment';
     }
 
 

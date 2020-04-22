@@ -133,7 +133,7 @@ class Post
     /**
      * @return Collection|Comment[]
      */
-    public function getcomments(): Collection
+    public function getComments(): Collection
     {
         return $this->comments;
     }

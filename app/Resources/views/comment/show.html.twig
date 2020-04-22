@@ -7,19 +7,19 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ blog_comment.id }}</td>
+                <td>{{ comment.id }}</td>
             </tr>
             <tr>
                 <th>Author</th>
-                <td>{{ blog_comment.author }}</td>
+                <td>{{ comment.author }}</td>
             </tr>
             <tr>
                 <th>Content</th>
-                <td>{{ blog_comment.content }}</td>
+                <td>{{ comment.content }}</td>
             </tr>
             <tr>
                 <th>Createdat</th>
-                <td>{% if blog_comment.createdAt %}{{ blog_comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
@@ -29,7 +29,7 @@
             <a href="{{ path('comment_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('comment_edit', { 'id': blog_comment.id }) }}">Edit</a>
+            <a href="{{ path('comment_edit', { 'id': comment.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
