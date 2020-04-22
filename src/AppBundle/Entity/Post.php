@@ -66,6 +66,11 @@ class Post
         $this->comments = new ArrayCollection();
     }
 
+    /**
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published = true;
+
 
     /**
      * Get id.
@@ -149,6 +154,23 @@ class Post
     {
         $this->createdAt = $createdAt;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param mixed $published
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+    }
+
 
 
     /**
