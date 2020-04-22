@@ -27,7 +27,7 @@ class PostController extends Controller
 
         $BlogPosts = $em->getRepository('AppBundle:Post')->findAll();
 
-        return $this->render('Post/index.html.twig', array(
+        return $this->render('blog_post/index.html.twig', array(
             'BlogPosts' => $BlogPosts,
         ));
     }
@@ -53,7 +53,7 @@ class PostController extends Controller
             return $this->redirectToRoute('post_show', array('id' => $BlogPost->getId()));
         }
 
-        return $this->render('Post/new.html.twig', array(
+        return $this->render('blog_post/new.html.twig', array(
             'Post' => $BlogPost,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class PostController extends Controller
      */
     public function showPost(Request $request, Post $BlogPost)
     {
-        return $this->render('Post/show.html.twig', array(
+        return $this->render('blog_post/show.html.twig', array(
             'Post' => $BlogPost
         ));
     }
@@ -89,7 +89,7 @@ class PostController extends Controller
 
             return $this->redirectToRoute('post_edit', array('id' => $BlogPost->getId()));
         }
-        return $this->render('Post/edit.html.twig', array(
+        return $this->render('blog_post/edit.html.twig', array(
             'blog_post' => $BlogPost,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

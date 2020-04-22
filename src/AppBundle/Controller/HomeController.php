@@ -33,12 +33,13 @@ class HomeController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        //repository est pour selectionner une entity
-        $BlogPosts = $em->getRepository('AppBundle:Post')->findAll();
+        //repository est pour selectionner une entity, on défini la variable
+        $allPosts = $em->getRepository('AppBundle:Post')->findAll();
 
         //je retourne une vue seulement pour visionner les posts
         return $this->render('home/index.html.twig', array(
-            'blog_posts' => $BlogPosts,
+            //nom que l'on donne à chaque élément du tableau => nom de la variable qui contient le repository de l'objet
+            'eachPost' => $allPosts,
         ));
     }
 
@@ -49,8 +50,9 @@ class HomeController extends Controller
          * @Method("GET")
          */
         //Affichage d'un article et ses commentaires
+        //la fonction show utilise l'objet "Post"
         //Request permet de recevoir les données du formulaire
-        public function showAction(Post $BlogPost, Request $request)
+        public function showAction(Post $post, Request $request)
     {
         //On instancie l'entité Blog_comment
         $comment = new Comment();
@@ -64,7 +66,7 @@ class HomeController extends Controller
         //On vérifie si form a été envoyé et est valide
         if($form->isSubmitted()&& $form->isValid()){
             //on entre dans la condition
-            $comment->setBlogPost($BlogPost);
+            $comment->setPost($post);
             $comment->setCreatedAt( new \DateTime('now'));
 
             //On hydrate notre objet pour alimenter la BDD, instance de doctrine
@@ -78,8 +80,8 @@ class HomeController extends Controller
         }
 
         return $this->render('home/show.html.twig', array(
-            'Post' => $BlogPost,
-            'comments' => $BlogPost->getComments(),
+            'post' => $allPosts,
+            'comments' => $post->getComments(),
             'formComment' => $form->createView()
         ));
     }

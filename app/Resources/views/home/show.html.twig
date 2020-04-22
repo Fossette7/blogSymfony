@@ -6,30 +6,30 @@
         <div class="col-lg-8 col-md-10 mx-auto">
             {# je crée ma zone de post#}
             <div class="post-preview">
-                    <p hidden>je suis un numéro id:{{blog_post.id}} </p>
+                    <p hidden>je suis un numéro id:{{Post.id}} </p>
                         <h2 class="post-title">
                         {#je récupère le titre du post#}
-                        {{ blogPost.title }}
+                        {{ post.title }}
                         </h2>
                     <p class="post-subtitle">
-                        {{ blog_post.content }}
+                        {{ post.content }}
                     </p>
                 {#j'ajoute la date de mise en ligne du post#}
-                {#<p class="post-meta">Posté le {{ blog_post.date_creation | date('d/m/Y', 'Europe/Paris') }}</p>#}
+                {#<p class="post-meta">Posté le {{ post.date_creation | date('d/m/Y', 'Europe/Paris') }}</p>#}
             </div>
 
             {# je crée ma partie commentaire#}
                     <section id="commentaires">
                         <h3>Commentaires</h3>
                         <hr>
-                        {% for blog_comment in blog_post.Comments %}
+                        {% for blog_comment in Post.Comments %}
                             <div class="comment">
                              <div class="row">
                                     <div class="col-3">
                                     {{ blog_comment.author }} (<small>{{ blog_comment.createdAt|date('d-m-Y H:i') }}</small>)
                                     </div>
                                     <div class="col-9">
-                                    {{ blog_comment.content | raw  }}
+                                    {{ comment.content | raw  }}
                                     </div>
                                 </div>
                             </div>
