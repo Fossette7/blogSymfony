@@ -43,6 +43,7 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank(message = "Le contenu ne peut être vide.")
      */
     private $content;
 
@@ -50,7 +51,6 @@ class Comment
      * @var Post
      *
      * @ORM\ManyToOne(targetEntity="Post", inversedBy="comments")
-     * @Assert\NotBlank(message = "Le contenu ne peut être vide.")
      */
     private $post;
 
