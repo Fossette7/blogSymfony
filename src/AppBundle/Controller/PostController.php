@@ -99,18 +99,21 @@ class PostController extends Controller
     /**
      * Deletes a Post entity.
      *
-     * @Route("/{id}", name="post_delete")
+     * @Route("/delete/{id}", name="post_delete")
      * @Method("DELETE")
      */
-    public function deletePost(Request $request, Post $BlogPost)
+    public function deletePost(Request $request, Post $blogPost)
     {
-        $form = $this->createDeleteForm($BlogPost);
+        $form = $this->createDeleteForm($blogPost);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            dump($blogPost);
             $em = $this->getDoctrine()->getManager();
-            $em->remove($BlogPost);
+            $em->remove($blogPost);
             $em->flush();
+            die;
         }
 
         return $this->redirectToRoute('post_index');
@@ -119,14 +122,14 @@ class PostController extends Controller
     /**
      * Creates a form to delete a Post entity.
      *
-     * @param Post $BlogPost The Post entity
+     * @param Post $blogPost The Post entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Post $BlogPost)
+    private function createDeleteForm(Post $blogPost)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('post_delete', array('id' => $BlogPost->getId())))
+            ->setAction($this->generateUrl('post_delete', array('id' => $blogPost->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

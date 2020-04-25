@@ -84,7 +84,6 @@ class HomeController extends Controller
             'post' => $form,
             'comments' => $post->getComments(),
             'formComment' => $form->createView(),
-            'currentPost' => $post,
         ));
     }
 
