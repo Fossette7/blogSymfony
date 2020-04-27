@@ -17,7 +17,6 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('createdAt')
             ->add('published', CheckboxType::class)
         ;
     }/**

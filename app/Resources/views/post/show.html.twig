@@ -7,23 +7,23 @@
             {# je crée ma zone de post#}
             <div class="post-preview">
                 <h1>Affichage d'un article</h1>
-                <p type="hidden">je suis un numéro id:{{Post.id}} </p>
+                <p type="hidden">je suis un numéro id:{{post.id}} </p>
                 <h2 class="post-title">
                     {#je récupère le titre du post#}
-                    {{ Post.title }}
+                    {{ post.title }}
                 </h2>
                 <p class="post-subtitle">
-                    {{ Post.content }}
+                    {{ post.content }}
                 </p>
                 {#j'ajoute la date de mise en ligne du post#}
-                {#<p class="post-meta">Posté le {{ currentPost.date_creation | date('d/m/Y', 'Europe/Paris') }}</p>#}
+                <p class="post-meta">Posté le {{ post.createdAt | date('d/m/Y', 'Europe/Paris') }}</p>
             </div>
             <ul>
                 <li>
                     <a href="{{ path('post_index') }}">Retour à la liste</a>
                 </li>
                 <li>
-                    <a href="{{ path('post_edit', { 'id': Post.id }) }}">Modifier</a>
+                    <a href="{{ path('post_edit', { 'id': post.id }) }}">Modifier</a>
                 </li>
             </ul>
         </div>

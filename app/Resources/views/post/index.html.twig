@@ -3,39 +3,56 @@
 {% block body %}
     <h1>Liste des articles</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for BlogPost in BlogPosts %}
-            <tr>
-                <td><a href="{{ path('post_show', { 'id': BlogPost.id }) }}">{{ BlogPost.id }}</a></td>
-                <td>{{ BlogPost.title }}</td>
-                <td>{{ BlogPost.content }}</td>
-                <td>
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% for post in BlogPosts %}
+                <div class="post-preview">
+                    <a href="{{ path('post_show', { id:post.id }) }}">
+                        <p hidden>je suis un numéro id:{{post.id}}</p>
+                        <h2 class="post-title">
+                            {{ post.title }}
+                        </h2>
+                        <p class="post-meta">Posté le {{ post.createdAt|date('d-m-Y H:i:s') }}</p>
+
+                        <h3 class="post-subtitle">
+                            {#je récupère le contenu en appliquant un truncate pour le châpo#}
+                            {# {{ post.contenu | truncate(100) }} #}
+                            {{ post.content }}
+                        </h3>
+                        <a class="btn"  href="{{path('home_post_show', {id: post.id})}}">Lire plus...</a>
+                    </a>
+
+                </div>
+
+                <table>
+
+                    <tbody>
+                    <td>
+                        <tr>
                     <ul>
                         <li>
-                            <a href="{{ path('post_show', { 'id': BlogPost.id }) }}">show</a>
+                            <a href="{{ path('post_show', { 'id': post.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('post_edit', { 'id': BlogPost.id }) }}">edit</a>
+                            <a href="{{ path('post_edit', { 'id': post.id }) }}">edit</a>
                         </li>
                     </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    </tr>
+                    </td>
+                    </tbody>
+                </table>
+                <ul>
+                    <li>
+                        <a href="{{ path('post_new') }}">Créer un nouvel article</a>
+                    </li>
+                </ul>
+                <hr>
+            {% endfor %}
 
-    <ul>
-        <li>
-            <a href="{{ path('post_new') }}">Créer un nouvel article</a>
-        </li>
-    </ul>
+
+        </div>
+    </div>
+
+
+    <div class="clearfix"><a class="btn btn-primary float-right" href="#">En haut ↑</a></div>
 {% endblock %}

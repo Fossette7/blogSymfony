@@ -54,7 +54,7 @@ class PostController extends Controller
         }
 
         return $this->render('post/new.html.twig', array(
-            'Post' => $BlogPost,
+            'post' => $BlogPost,
             'form' => $form->createView(),
         ));
     }
@@ -68,7 +68,7 @@ class PostController extends Controller
     public function showPost(Request $request, Post $BlogPost)
     {
         return $this->render('post/show.html.twig', array(
-            'Post' => $BlogPost
+            'post' => $BlogPost
         ));
     }
 

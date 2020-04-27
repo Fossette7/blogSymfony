@@ -52,7 +52,7 @@ class Post
     /**
      * @var Comment
      *
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade="remove")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", orphanRemoval=true, cascade="persist")
      */
     private $comments;
 
