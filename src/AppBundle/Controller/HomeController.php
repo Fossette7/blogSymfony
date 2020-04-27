@@ -47,7 +47,7 @@ class HomeController extends Controller
         /**
          * Finds and displays a Post entity & comments entity.
          *
-         * @Route("/blogpost/{id}", name="home_post_show")
+         * @Route("/post/{id}", name="home_post_show")
          * @Method("GET")
          */
         //Affichage d'un article et ses commentaires
@@ -73,7 +73,7 @@ class HomeController extends Controller
             //On hydrate notre objet pour alimenter la BDD, instance de doctrine
             $doctrine = $this->getDoctrine()->getManager();
 
-            //On hydrate $comment
+            //On garde en stock cette hydratation $comment
             $doctrine->persist($comment);
 
             //On enregistre dans la BDD
@@ -81,8 +81,7 @@ class HomeController extends Controller
         }
 
         return $this->render('home/show.html.twig', array(
-            'post' => $form,
-            'comments' => $post->getComments(),
+            'post' => $post,
             'formComment' => $form->createView(),
         ));
     }

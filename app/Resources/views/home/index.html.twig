@@ -25,10 +25,10 @@
                             {{ currentPost.title }}
                         </h2>
                         <p>{{ currentPost.createdAt|date('d-m-Y H:i:s') }}</p>
-                        {#<p class="post-meta">Posté le {{ blog_post.created }}</p>#}
+                        {#<p class="post-meta">Posté le {{ post.created }}</p>#}
                         <h3 class="post-subtitle">
                             {#je récupère le contenu en appliquant un truncate pour le châpo#}
-                           {# {{ blog_post.contenu | truncate(100) }} #}
+                           {# {{ post.contenu | truncate(100) }} #}
                             {{ currentPost.content }}
                         </h3>
                         <a class="btn"  href="{{path('home_post_show', {id: currentPost.id})}}">Lire plus...</a>

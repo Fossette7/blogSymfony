@@ -27,7 +27,7 @@ class PostController extends Controller
 
         $BlogPosts = $em->getRepository('AppBundle:Post')->findAll();
 
-        return $this->render('blog_post/index.html.twig', array(
+        return $this->render('post/index.html.twig', array(
             'BlogPosts' => $BlogPosts,
         ));
     }
@@ -53,7 +53,7 @@ class PostController extends Controller
             return $this->redirectToRoute('post_show', array('id' => $BlogPost->getId()));
         }
 
-        return $this->render('blog_post/new.html.twig', array(
+        return $this->render('post/new.html.twig', array(
             'Post' => $BlogPost,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class PostController extends Controller
      */
     public function showPost(Request $request, Post $BlogPost)
     {
-        return $this->render('blog_post/show.html.twig', array(
+        return $this->render('post/show.html.twig', array(
             'Post' => $BlogPost
         ));
     }
@@ -89,8 +89,8 @@ class PostController extends Controller
 
             return $this->redirectToRoute('post_edit', array('id' => $BlogPost->getId()));
         }
-        return $this->render('blog_post/edit.html.twig', array(
-            'blog_post' => $BlogPost,
+        return $this->render('post/edit.html.twig', array(
+            'post' => $BlogPost,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -109,13 +109,12 @@ class PostController extends Controller
 
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($blogPost);
             $em = $this->getDoctrine()->getManager();
             $em->remove($blogPost);
             $em->flush();
-            die;
-        }
 
+        }
+        //redirect to list of post
         return $this->redirectToRoute('post_index');
     }
 
