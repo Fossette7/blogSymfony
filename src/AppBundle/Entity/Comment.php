@@ -62,6 +62,11 @@ class Comment
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(name="approved", type="boolean")
+     */
+    private $approved = true;
+
 
     /**
      * Get id.
@@ -176,4 +181,21 @@ class Comment
     {
         return $this->createdAt;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getApproved()
+    {
+        return $this->approved;
+    }
+
+    /**
+     * @param mixed $approved
+     */
+    public function setApproved($approved)
+    {
+        $this->approved = $approved;
+    }
+
 }
