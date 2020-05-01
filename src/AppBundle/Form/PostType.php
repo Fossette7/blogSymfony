@@ -17,7 +17,7 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('published', CheckboxType::class)
+            ->add('published', CheckboxType::class, array('required' => false))
         ;
     }/**
      * {@inheritdoc}
