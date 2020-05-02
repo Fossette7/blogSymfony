@@ -5,13 +5,13 @@
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" class="btn btn-outline-success" />
+    <p><input type="submit" value="Modifier" class="btn btn-outline-success" /></p>
     {{ form_end(edit_form) }}
 
             <a class="btn btn-outline-secondary" href="{{ path('post_index') }}">Retour à la liste</a>
 
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete" class="btn btn-outline-danger">
+                <p><input type="submit" value="Supprimer" class="btn btn-outline-danger"></p>
             {{ form_end(delete_form) }}
 
 {% endblock %}
