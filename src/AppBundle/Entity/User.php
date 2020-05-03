@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements  UserInterface
 {
     /**
      * @var int
@@ -25,9 +26,15 @@ class User
     /**
      * @var string|null
      *
-     * @ORM\Column(name="username", type="string", length=255, nullable=true)
+     * @ORM\Column(name="username", type="string", length=255, nullable=false)
      */
     private $username;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles=[];
+
 
     /**
      * @var string
@@ -39,7 +46,7 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
 
@@ -95,6 +102,29 @@ class User
     }
 
     /**
+     * @see UserInterface
+     */
+    public function getRoles():array
+    {
+        $roles=$this->roles;
+        //every user has minumum a ROLE_USER
+        $roles[]='ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    /**
+     *
+     * @see UserInterface
+     */
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
      * Set password.
      *
      * @param string $password
@@ -116,6 +146,24 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * @see UserInterface.
+     *
+     */
+    public function getSalt()
+    {
+        //not needed when usin the bcrypt algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface.
+     *
+     */
+    public function eraseCredentials()
+    {
+        //empty
     }
 
     /**

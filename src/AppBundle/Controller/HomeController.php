@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 
 /**
- * User bloglist controller.
+ * Home - User bloglist controller.
  *
  * @Route("listpost")
  */
