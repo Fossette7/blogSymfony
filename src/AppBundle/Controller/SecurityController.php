@@ -40,9 +40,9 @@ class SecurityController extends Controller
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction(AuthenticationUtils $authenticationUtils)
+    public function loginAction(AuthenticationUtils $authenticationUtils):Response
     {
-        //get the login error
+        //get the login error if exist
         $error = $authenticationUtils->getLastAuthenticationError();
 
         //last username entered by the user
@@ -54,5 +54,16 @@ class SecurityController extends Controller
         ]);
 
     }
+
+    /**
+     * @Route("/logout", name="security_logout")
+     */
+    public function logout()
+    {
+        //this function will never be executed-> URL needed for disconnect
+        throw new \Exception('This should never be reached!');
+    }
+
+
 
 }

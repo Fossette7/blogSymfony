@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -12,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User implements  UserInterface
+class User implements UserInterface
 {
     /**
      * @var int
@@ -26,12 +25,12 @@ class User implements  UserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="username", type="string", length=255, nullable=false)
+     * @ORM\Column(name="username", type="string", length=255, nullable=false, unique=true)
      */
     private $username;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(name="roles", type="array")
      */
     private $roles=[];
 
@@ -39,7 +38,7 @@ class User implements  UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=20)
+     * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
 
@@ -57,15 +56,6 @@ class User implements  UserInterface
      */
     private $isActive;
 
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="user")
-     */
-    private $posts;
-
-    public function __construct()
-    {
-        $this->posts = new ArrayCollection();
-    }
 
     /**
      * Get id.
@@ -108,7 +98,9 @@ class User implements  UserInterface
     {
         $roles=$this->roles;
         //every user has minumum a ROLE_USER
-        $roles[]='ROLE_USER';
+        if (empty($roles)){
+            $roles[]='ROLE_USER';
+        }
 
         return array_unique($roles);
     }
@@ -154,7 +146,8 @@ class User implements  UserInterface
      */
     public function getSalt()
     {
-        //not needed when usin the bcrypt algorithm in security.yaml
+        //not needed when using the bcrypt algorithm in security.yaml
+        return null;
     }
 
     /**
@@ -214,37 +207,5 @@ class User implements  UserInterface
         return $this->isActive;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPosts()
-    {
-        return $this->posts;
-    }
 
-    /**
-     * @param Post $post
-     * @return User
-     */
-    public function addPost(Post $post): self
-    {
-        if (!$this->posts->contains($post)) {
-            $this->posts->add($post);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Post $post
-     * @return User
-     */
-    public function removePost(Post $post): self
-    {
-        if ($this->posts->contains($post)) {
-            $this->posts->remove($post);
-        }
-
-        return $this;
-    }
 }

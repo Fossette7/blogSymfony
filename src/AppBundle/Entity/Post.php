@@ -56,10 +56,6 @@ class Post
      */
     private $comments;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="posts")
-     */
-    private $user;
 
     public function __construct()
     {
@@ -197,19 +193,5 @@ class Post
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 
-    /**
-     * @param mixed $user
-     */
-    public function setUser(User $user)
-    {
-        $this->user = $user;
-    }
 }

@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Création d'un article</h1>
+        <h1>Création d'un article</h1>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-    <p> <input type="submit" value="Créer" class="btn btn-info" /> </p>
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+        {{ form_rest(form) }}
 
-           <div>
-                <a type="button" class="btn btn-outline-secondary" href="{{ path('post_index') }}">Retour à la liste</a>
-           </div>
+        <p> <input type="submit" value="Créer" class="btn btn-info" /> </p>
+
+
+        {{ form_end(form) }}
+
+    <div>
+        <a type="button" class="btn btn-outline-secondary" href="{{ path('post_index') }}">Retour à la liste</a>
+    </div>
 
 {% endblock %}

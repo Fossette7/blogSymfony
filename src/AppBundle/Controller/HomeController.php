@@ -78,6 +78,7 @@ class HomeController extends Controller
 
             //On enregistre dans la BDD
             $doctrine->flush();
+
         }
 
         return $this->render('home/show.html.twig', array(
