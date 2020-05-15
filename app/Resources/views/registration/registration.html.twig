@@ -6,23 +6,26 @@
             {{ error.messageKey|trans(error.messageData, 'security') }}
         </div>
     {% endif %}
-
-
+{#
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+    {{ form_start(form, {'action': path(''), 'method': 'GET'}) }}
+    #}
     <div class="row">
         <div class="col-sm-5 offset-sm-3">
             <div class="well">
                 <form action="{{ path('login') }}" method="post">
 
                     <fieldset>
-                        <legend><i class="fa fa-lock" aria-hidden="true"></i></legend>
+
                         <div class="form-group">
                             <h1>Espace membre</h1>
-                            <label for="username">Pseudo:{#{{ 'label.username'|trans }}#}</label>
+                            <label for="username">Pseudo:</label>
                             <input type="text" id="username" name="username" value="{{ last_username }}" class="form-control"/>
-
                         </div>
                         <div class="form-group">
-                            <label for="password">Mot de passe:{#{{ 'label.password'|trans }}#}</label>
+                            <label for="password">Mot de passe:</label>
                             <input type="password" id="password" name="password" class="form-control" />
 
                         </div>

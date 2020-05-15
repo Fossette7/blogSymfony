@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 /**
- * @Route ("admin")
+ * @Route ("login")
  * @Method("GET")
  */
 

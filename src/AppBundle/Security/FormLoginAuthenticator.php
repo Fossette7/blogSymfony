@@ -85,8 +85,8 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
-
-        $homeRoute = $this->router->generate('post');
+        //redirect to admin page
+        $homeRoute = $this->router->generate('post_index');
         return new RedirectResponse($homeRoute);
     }
 
