@@ -40,7 +40,7 @@ class SecurityController extends Controller
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction(AuthenticationUtils $authenticationUtils):Response
+    public function loginAction(AuthenticationUtils $authenticationUtils)
     {
         //get the login error if exist
         $error = $authenticationUtils->getLastAuthenticationError();

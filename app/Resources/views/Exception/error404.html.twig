@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %} Page non trouvée {% endblock %}
+{% block body %}
+<!-- content -->
+<div class="home-header container-fluid mt-3 border-0">
+    <div class="row">
+        <div class="col-12 p-0">
+            <div id="header-text" class="text-center">
+                <h1>Page non trouvée</h1>
+                <img src="{{ asset('web/img/page404') }}">
+                <p>code de l'erreur: {{ status_code }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

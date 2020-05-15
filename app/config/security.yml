@@ -3,7 +3,7 @@
 # change according to OC course
 security:
     encoders:
-        AppBundle\Entity\User: sha512
+        AppBundle\Entity\User: bcrypt
 
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
@@ -35,7 +35,6 @@ security:
             #http_basic: ~
     access_control:
             # require ROLE_ADMIN for /admin*
-            - { path: '^/admin', roles: IS_AUTHENTICATED_ANONYMOUSLY }
             - { path: '^/', roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
             # https://symfony.com/doc/current/security/form_login_setup.html
