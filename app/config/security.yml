@@ -23,8 +23,12 @@ security:
         main:
             pattern: ^/
             anonymous: true
+            form_login:
+                login_path: login
+                check_path: login
             logout:
                 path: security_logout
+                target: home_index
             guard:
                 authenticators:
                     - AppBundle\Security\FormLoginAuthenticator
@@ -35,7 +39,7 @@ security:
             #http_basic: ~
     access_control:
             # require ROLE_ADMIN for /admin*
-            - { path: '^/', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: '^/login', roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~

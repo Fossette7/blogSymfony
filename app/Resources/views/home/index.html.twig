@@ -4,10 +4,10 @@
 
     <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
+
             {% for currentPost in allPosts %}
                 <div class="post-preview">
                     <a href="{{ path('post_show', { id:currentPost.id }) }}">
-                        <p hidden>je suis un numéro id:{{currentPost.id}}</p>
                         <h2 class="post-title">
                             {{ currentPost.title }}
                         </h2>
