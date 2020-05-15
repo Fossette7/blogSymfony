@@ -19,7 +19,9 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Component\Security\Core\Security;
 
+
 class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
+
 {
     use TargetPathTrait;
 
@@ -84,7 +86,8 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->router->generate('home_index'));
+        $homeRoute = $this->router->generate('post');
+        return new RedirectResponse($homeRoute);
     }
 
     protected function getLoginUrl()

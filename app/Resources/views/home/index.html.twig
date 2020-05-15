@@ -15,8 +15,7 @@
                         {#<p class="post-meta">Posté le {{ post.created }}</p>#}
                         <h3 class="post-subtitle">
                             {#je récupère le contenu en appliquant un truncate pour le châpo#}
-                           {# {{ post.contenu | truncate(100) }} #}
-                            {{ currentPost.content }}
+                           {{ currentPost.content | truncate(100) }}
                         </h3>
                         <a class="btn"  href="{{path('home_post_show', {id: currentPost.id})}}">Lire plus...</a>
                     </a>
