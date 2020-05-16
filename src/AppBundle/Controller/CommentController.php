@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Comment controller.
@@ -19,6 +20,7 @@ class CommentController extends Controller
      * Lists all Comment entities.
      *
      * @Route("/", name="comment_index")
+     * @Security("has_role('ROLE_USER')")
      * @Method("GET")
      */
     public function indexAction()
