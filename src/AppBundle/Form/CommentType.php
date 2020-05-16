@@ -10,7 +10,11 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class CommentType extends AbstractType
 {
@@ -21,29 +25,45 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'attr'=> [
-                    'class'=>'form-control'
+                'attr' => [
+                    'class' => 'form-control'
                 ]
             ])
             ->add('author', TextType::class, [
-                'label'=> 'Pseudo',
-                'attr' => ['class' =>'form-control']
+                'label' => 'Pseudo',
+                'attr' => ['class' => 'form-control']
             ])
-            ->add('content', TextareaType::class,[
-                'label'=> 'Message',
-                'attr' => ['class' =>'form-control']
+            ->add('content', TextareaType::class, [
+                'label' => 'Message',
+                'attr' => ['class' => 'form-control']
             ])
             ->add('Envoyer', SubmitType::class
             )
-        ;
-    }/**
+            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+                // Check error on my form
+                // Get My form
+                $form = $event->getForm();
+
+                // Get content field on my form
+                $contentFieldObject = $form->get('content');
+
+                // Check if content is not empty
+                if(strlen(trim($contentFieldObject->getData())) < 10)
+                {
+                    // Set error on content field
+                    $contentFieldObject->addError(new FormError('Votre commentaire doit faire au minimum 10 charactères'));
+                }
+            });
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => Comment::class,
-                ]);
+        ]);
     }
 
     /**
@@ -53,7 +73,6 @@ class CommentType extends AbstractType
     {
         return 'appbundle_comment';
     }
-
 
 
 }
