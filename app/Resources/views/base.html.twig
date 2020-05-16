@@ -30,6 +30,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('home_index') }}">Home</a>
                         </li>
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('post_index') }}">Gestionnaire</a>
+                        </li>
+                            {% else %}
+                                <input type="hidden" Gestionnaire>
+                        {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('about_index') }}">A propos</a>
                         </li>
