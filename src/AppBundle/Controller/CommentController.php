@@ -20,7 +20,7 @@ class CommentController extends Controller
      * Lists all Comment entities.
      *
      * @Route("/", name="comment_index")
-     * @Security("has_role('ROLE_USER')")
+     * @Security("has_role('ROLE_ADMIN')")
      * @Method("GET")
      */
     public function indexAction()

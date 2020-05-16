@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Liste de commentaires</h1>
+    <h1>Liste des commentaires</h1>
 
     <table>
         <thead>
@@ -40,4 +40,5 @@
             <a href="{{ path('comment_new') }}">Ajouter un nouveau commentaire</a>
         </li>
     </ul>
+    <div class="container"><a class="btn btn-primary float-right" href="{{path('post_index')}}">Retour au gestionnaire </a></div>
 {% endblock %}
