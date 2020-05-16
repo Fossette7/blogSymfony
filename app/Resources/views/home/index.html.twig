@@ -7,7 +7,7 @@
 
             {% for currentPost in allPosts %}
                 <div class="post-preview">
-                    <a href="{{ path('post_show', { id:currentPost.id }) }}">
+                    <a href="{{ path('home_post_show', { id:currentPost.id }) }}">
                         <h2 class="post-title">
                             {{ currentPost.title }}
                         </h2>
