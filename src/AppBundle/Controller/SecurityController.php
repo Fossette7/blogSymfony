@@ -60,7 +60,7 @@ class SecurityController extends Controller
      */
     public function logout()
     {
-        //this function will never be executed-> URL needed for disconnect
+        //this function will never be executed-> just URL needed for disconnect
         throw new \Exception('This should never be reached!');
     }
 

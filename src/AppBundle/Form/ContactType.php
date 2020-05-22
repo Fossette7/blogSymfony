@@ -8,25 +8,39 @@
 
 namespace AppBundle\Form;
 
-
-use Doctrine\DBAL\Types\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\FormEvents;
 
 class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
        $builder
-           ->add('nom', TextType::class, array('required' => true))
+           ->add('username', TextType::class, array('required' => true))
            ->add('email', EmailType::class, array('required' => true))
            ->add('objet', TextType::class, array('required' => true))
            ->add('message', TextareaType::class, array('required' => true,
                'constraints' => array(new NotBlank(),
-                   new length(array('min'=> 3))
-                   )));
+                   new Length(array('min'=> 3))
+                   )))
+           ->add('Envoyer', SubmitType::class)
+           ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+               // Check error on my form
+               // Get My form
+               $form = $event->getForm();
+               // Get content field on my form
+               $contentFieldObject = $form->get('message');
+               //check message send
+
+           });
 
     }
 }

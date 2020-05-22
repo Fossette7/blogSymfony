@@ -5,6 +5,10 @@
 
     {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input type="submit" class="btn btn-primary" value="envoyer"/>
+    {% for message in app.flashes('success') %}
+        <div class="flash-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     {{ form_end(form) }}
 {% endblock %}
