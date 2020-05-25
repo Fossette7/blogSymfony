@@ -1,44 +1,53 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
-    <h1>User</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Isactive</th>
-                <td>{% if user.isActive %}Yes{% else %}No{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <h1>Gestion d'un utilisateur</h1>
+        <hr>
+        <br>
+        <a type="button" class="btn btn-info"
+           href="{{ path('post_new') }}">Créer un nouvel article</a>
+        <a type="button" class="btn btn-info"
+           href="{{ path('comment_index') }}">Gérer les commentaires</a>
 
-    <ul>
-        <li>
-            <a href="{{ path('user_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                {# je crée ma zone user#}
+                <div class="user-preview">
+                    <p type="hidden">je suis un numéro id:{{user.id}} </p>
+                    <h2 class="user-username">
+                        {#je récupère le username#}
+                        {{ user.username }}
+                    </h2>
+                    <p class="user-email">
+                        {{ user.email }}
+                    </p>
+                    <p class="user-password">
+                        {{ user.password }}
+                    </p>
+                    <p>{% if user.isActive %}
+                            Actif
+                        {% else %}
+                            Non actif
+                        {% endif %}
+                    </p>
+                    {#j'ajoute la date de mise en ligne du post#}
+                </div>
+
+                <div>
+                    <p><a type="button" class="btn btn-outline-secondary"
+                          href="{{ path('user_index') }}">Retour à la liste</a>
+                    </p>
+
+                    <p><a type="button" class="btn btn-outline-success"
+                          href="{{ path('user_edit', { 'id': user.id }) }}">Modifier</a>
+                    </p>
+                </div>
+
+    </div>
+
+        </div>
+        <hr>
+
 {% endblock %}

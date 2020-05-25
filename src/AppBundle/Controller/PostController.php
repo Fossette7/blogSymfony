@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -11,7 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Post controller.
  *
- * @Route("post")
+ * @Route("/admin")
+ * @IsGranted("ROLE_ADMIN", message="Accès administrateur, veuillez-vous connecter!")
+ *
  */
 class PostController extends Controller
 {
@@ -62,7 +65,7 @@ class PostController extends Controller
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/{id}", name="post_show")
+     * @Route("/post-{id}", name="post_show")
      * @Method("GET")
      */
     public function showPost(Request $request, Post $BlogPost)
@@ -75,7 +78,7 @@ class PostController extends Controller
     /**
      * Displays a form to edit an existing Post entity.
      *
-     * @Route("/edit/{id}", name="post_edit")
+     * @Route("/edit-{id}", name="post_edit")
      * @Method({"GET", "POST"})
      */
     public function editPost(Request $request, Post $BlogPost)
@@ -99,7 +102,7 @@ class PostController extends Controller
     /**
      * Deletes a Post entity.
      *
-     * @Route("/delete/{id}", name="post_delete")
+     * @Route("/delete-{id}", name="post_delete")
      * @Method("DELETE")
      */
     public function deletePost(Request $request, Post $blogPost)

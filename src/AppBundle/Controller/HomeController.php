@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Home - User bloglist controller.
  *
- * @Route("listpost")
+ * @Route("/")
  */
 class HomeController extends Controller
 {

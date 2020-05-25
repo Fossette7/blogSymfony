@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,7 +13,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 /**
  * User controller.
  *
- * @Route("user")
+ * @Route("/admin/user")
+ * @IsGranted("ROLE_ADMIN", message="Accès administrateur, veuillez-vous connecter!")
+ *
  */
 class UserController extends Controller
 {

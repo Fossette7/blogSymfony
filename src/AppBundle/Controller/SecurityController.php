@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 /**
- * @Route ("login")
+ * @Route ("/")
  * @Method("GET")
  */
 
@@ -27,7 +27,7 @@ class SecurityController extends Controller
     /**
      * registration
      *
-     * @Route("/", name="registration")
+     * @Route("/log", name="registration")
      *
      */
 
