@@ -25,13 +25,14 @@ class ContactType extends AbstractType
     {
        $builder
            ->add('username', TextType::class, array('required' => true))
-           ->add('email', EmailType::class, array('required' => true))
+           ->add('from', EmailType::class, [
+               'required' => true,
+                'label'=>'E-mail'])
            ->add('objet', TextType::class, array('required' => true))
            ->add('message', TextareaType::class, array('required' => true,
                'constraints' => array(new NotBlank(),
                    new Length(array('min'=> 3))
                    )))
-           ->add('Envoyer', SubmitType::class)
            ->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
                // Check error on my form
                // Get My form

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,7 +13,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * Comment controller.
  *
- * @Route("comment")
+ * @Route("admin/comment")
+ * @IsGranted("ROLE_ADMIN", message="Accès administrateur, veuillez-vous connecter!")
+ *
  */
 class CommentController extends Controller
 {
@@ -20,7 +23,7 @@ class CommentController extends Controller
      * Lists all Comment entities.
      *
      * @Route("/", name="comment_index")
-     * @Security("has_role('ROLE_ADMIN')")
+     *
      * @Method("GET")
      */
     public function indexAction()
@@ -64,7 +67,7 @@ class CommentController extends Controller
     /**
      * Finds and displays a Comment entity.
      *
-     * @Route("/{id}", name="comment_show")
+     * @Route("-{id}", name="comment_show")
      * @Method("GET")
      */
     public function showComment(Comment $comment)
@@ -80,7 +83,7 @@ class CommentController extends Controller
     /**
      * Displays a form to edit an existing Comment entity.
      *
-     * @Route("/edit/{id}", name="comment_edit")
+     * @Route("/edit-{id}", name="comment_edit")
      * @Method({"GET", "POST"})
      */
     public function editComment(Request $request, Comment $comment)
@@ -105,7 +108,7 @@ class CommentController extends Controller
     /**
      * Deletes a Comment entity.
      *
-     * @Route("/{id}", name="comment_delete")
+     * @Route("-{id}", name="comment_delete")
      * @Method("DELETE")
      */
     public function deleteComment(Request $request, Comment $comment)
