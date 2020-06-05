@@ -3,42 +3,25 @@
 {% block body %}
     <h1>Liste des commentaires</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Pseudo</th>
-                <th>Contenu</th>
-                <th>crée le</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for comment in comments %}
-            <tr>
-                <td><a href="{{ path('comment_show', { 'id': comment.id }) }}">{{ comment.id }}</a></td>
-                <td>{{ comment.author }}</td>
-                <td>{{ comment.content }}</td>
-                <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('comment_show', { 'id': comment.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('comment_edit', { 'id': comment.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
 
-    <ul>
-        <li>
-            <a href="{{ path('comment_new') }}">Ajouter un nouveau commentaire</a>
-        </li>
-    </ul>
-    <div class="container"><a class="btn btn-primary float-right" href="{{path('post_index')}}">Retour au gestionnaire </a></div>
+            {% for comment in comments %}
+                <div class="comment-preview">
+                    <h2><a href="{{ path('comment_show', { 'id': comment.id }) }}">{{ comment.author }}</a></h2>
+                    <p>{{ comment.content }}</p>
+                    <a class="btn" href="{{ path('comment_show', { 'id': comment.id }) }}">Voir</a>
+
+                    <a class="btn" href="{{ path('comment_edit', { 'id': comment.id }) }}">Modifier</a>
+                </div>
+                <hr>
+            {% endfor %}
+
+            <div class="clearfix"><a class="btn btn-primary float-right" href="#">En haut ↑</a></div>
+        </div>
+    </div>
+    </br>
+    <div class="offset-6 col-md-4">
+        <a class="btn btn-primary float-right" href="{{path('post_index')}}">Retour au gestionnaire </a>
+    </div>
 {% endblock %}

@@ -7,7 +7,7 @@
 
             {% for currentPost in allPosts %}
                 <div class="post-preview">
-                    <a href="{{ path('home_post_show', { id:currentPost.id }) }}">
+                    <a href="{{ path('home_post_show', { id:currentPost.id }) }}"></a>
                         <h2 class="post-title">
                             {{ currentPost.title }}
                         </h2>
@@ -18,8 +18,6 @@
                            {{ currentPost.content | truncate(100) }}
                         </h3>
                         <a class="btn"  href="{{path('home_post_show', {id: currentPost.id})}}">Lire plus...</a>
-                    </a>
-
                 </div>
                 <hr>
             {% endfor %}

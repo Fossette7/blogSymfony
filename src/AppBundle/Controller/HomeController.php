@@ -15,6 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 
 /**
@@ -53,10 +54,17 @@ class HomeController extends Controller
         //Affichage d'un article et ses commentaires
         //la fonction show utilise l'objet "Post"
         //Request permet de recevoir les données du formulaire
-        public function showAction(Post $post, Request $request)
+        public function showAction(Post $post = null, Request $request)
     {
+
         //On instancie l'entité Comment
         $comment = new Comment();
+
+        //si le parametre id n'est pas trouvé
+        if($post === null){
+            throw new \Exception('Une erreur s\'est produite!', 404);
+
+        }
 
         //création de l'objet formulaire
         $form = $this->createForm(CommentType::class, $comment);

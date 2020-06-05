@@ -54,7 +54,7 @@ class User implements UserInterface
      *
      * @ORM\Column(name="isActive", type="boolean", nullable=true)
      */
-    private $isActive;
+    private $isActive = true;
 
 
     /**

@@ -9,12 +9,18 @@
 
             <h4>Bienvenue {{ app.user.username }}</h4>
             <br>
+            <div class="offset-4 col-md-4">
                 <a type="button" class="btn btn-info"
                href="{{ path('post_new') }}">Créer un nouvel article</a>
+            </div>
+            <br>
+            <div class="offset-4 col-md-4">
                 <a type="button" class="btn btn-info"
                href="{{ path('comment_index') }}">Gérer les commentaires</a>
+
                 <a type="button" class="btn btn-info"
                href="{{ path('user_index') }}">Gérer les utilisateurs</a>
+            </div>
 
             {% for post in BlogPosts %}
                 <div class="post-preview">
@@ -42,11 +48,14 @@
 
                 <hr>
             {% endfor %}
-
         </div>
-        <div class="container"><a class="btn btn-primary float-right" href="{{path('post_index')}}">Retour au gestionnaire </a></div>
+
+        <div class="col-md-12"><a class="btn btn-primary float-right" href="{{path('post_index')}}">
+                Retour au gestionnaire </a>
+        </div>
+
     </div>
+    <br>
 
-
-    <div class="clearfix"><a class="btn btn-primary float-right" href="#">En haut ↑</a></div>
+    <div class="col-md-12"><a class="btn btn-primary float-right" href="#">En haut ↑</a></div>
 {% endblock %}
