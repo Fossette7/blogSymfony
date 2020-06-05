@@ -1,48 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Users list</h1>
+    <h1>Liste des utilisateurs</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Isactive</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.email }}</td>
-                <td>{% if user.isActive %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('user_new') }}">Create a new user</a>
-        </li>
-    </ul>
-    <div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+
+            {% for user in users %}
+                <div class="user-preview">
+                    <h2><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.username }}</a></h2>
+                    <p>{{ user.email }}</p>
+                        <a class="btn"  href="{{path('user_show', {'id': user.id})}}">Voir</a>
+
+                        <a class="btn" href="{{ path('user_edit', { 'id': user.id }) }}">Modifier</a>
+                </div>
+                <hr>
+            {% endfor %}
+
+            <div class="clearfix"><a class="btn btn-primary float-right" href="#">En haut ↑</a></div>
+        </div>
+    </div>
+            <div class="offset-2 col-md-4">
+                <a class="btn" href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
+            </div>
+    <div class="offset-6 col-md-4">
         <a class="btn btn-primary float-right" href="{{path('post_index')}}">Retour au gestionnaire </a>
     </div>
 {% endblock %}

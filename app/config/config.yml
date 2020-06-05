@@ -36,6 +36,8 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_4_layout.html.twig']
+    globals:
+        webmaster: %app_webmaster%
 
 
 # Doctrine Configuration
@@ -66,6 +68,8 @@ swiftmailer:
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
+    encryption: 'ssl'
+    auth_mode: 'login'
     spool: { type: memory }
 
 sensio_framework_extra:
