@@ -68,8 +68,12 @@ class PostController extends Controller
      * @Route("/post/{id}", name="post_show")
      * @Method("GET")
      */
-    public function showPost(Request $request, Post $BlogPost)
+    public function showPost(Request $request, Post $BlogPost = null)
     {
+        if($BlogPost === null){
+            throw new \Exception('Une erreur s\'est produite!', 404);
+        }
+
         return $this->render('post/show.html.twig', array(
             'post' => $BlogPost
         ));
