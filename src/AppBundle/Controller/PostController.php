@@ -71,7 +71,8 @@ class PostController extends Controller
     public function showPost(Request $request, Post $BlogPost = null)
     {
         if($BlogPost === null){
-            throw new \Exception('Une erreur s\'est produite!', 404);
+            //throw new \Exception('Une erreur s\'est produite!', 404);
+            throw $this->createNotFoundException('Page inexistante - erreur 404');
         }
 
         return $this->render('post/show.html.twig', array(
@@ -93,7 +94,7 @@ class PostController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('post_edit', array('id' => $BlogPost->getId()));
+            return $this->redirectToRoute('post_show', array('id' => $BlogPost->getId()));
         }
         return $this->render('post/edit.html.twig', array(
             'post' => $BlogPost,
