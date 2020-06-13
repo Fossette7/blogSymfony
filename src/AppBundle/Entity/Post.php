@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="Post")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Post
 {
@@ -42,12 +43,23 @@ class Post
     private $content;
 
     /**
+     * @var string $titre
+     *
+     * @ORM\Column(name="author", type="string", length=255)
+     */
+    private $author;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $publishedAt;
 
     /**
      * @var Comment
@@ -59,10 +71,12 @@ class Post
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime('now');
         $this->comments = new ArrayCollection();
     }
 
     /**
+     *
      * @ORM\Column(name="published", type="boolean")
      */
     private $published = true;
@@ -129,11 +143,26 @@ class Post
     /**
      * @return Collection|Comment[]
      */
-    public function getComments(): Collection
+    public function getComments()
     {
         return $this->comments;
     }
 
+    /**
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param string $author
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+    }
 
     /**
      * @return \DateTime
@@ -154,6 +183,22 @@ class Post
     /**
      * @return mixed
      */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    /**
+     * @param mixed $publishedAt
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getPublished()
     {
         return $this->published;
@@ -168,16 +213,24 @@ class Post
     }
 
 
+    /**
+     * @ORM\PrePersist
+     * Callback pour mettre à jour la date de création à chaque modification de l'entité
+     */
+    public function updateDate()
+    {
+        $this->setPublishedAt(new \Datetime());
+    }
 
     /**
      * @param Comment $comments
      */
-    public function setcomments($comments)
+    public function setComments($comments)
     {
         $this->comments = $comments;
     }
 
-    public function addcomment(Comment $comment): self
+    public function addComment(Comment $comment)
     {
         if(!$this->comments->contains($comment)) {
             $this->comments->add($comment);
@@ -185,13 +238,12 @@ class Post
         return $this;
     }
 
-    public function removecomment (Comment $comment): self
+    public function removeComment (Comment $comment)
     {
         if($this->comments->contains($comment)){
             $this->comments->removeElement($comment);
         }
         return $this;
     }
-
 
 }
