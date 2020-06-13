@@ -62,6 +62,12 @@ class Post
     private $publishedAt;
 
     /**
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published = true;
+
+    /**
      * @var Comment
      *
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", orphanRemoval=true, cascade="persist")
@@ -74,13 +80,6 @@ class Post
         $this->createdAt = new \DateTime('now');
         $this->comments = new ArrayCollection();
     }
-
-    /**
-     *
-     * @ORM\Column(name="published", type="boolean")
-     */
-    private $published = true;
-
 
     /**
      * Get id.
