@@ -16,6 +16,7 @@
                 <p class="post-subtitle">
                     {{ post.content }}
                 </p>
+                <p>Par {{ post.author }}</p>
                 {#j'ajoute la date de mise en ligne du post#}
                 <p class="post-meta">Posté le {{ post.createdAt | date('d/m/Y \H:i:s') }}</p>
                 <p class="post-meta">Dernière mise à jour le {{ post.publishedAt | date('d/m/Y \H:i:s') }}</p>

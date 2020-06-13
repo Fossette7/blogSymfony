@@ -15,6 +15,7 @@
                         {{ post.content }}
                     </p>
                 {#j'ajoute la date de mise en ligne du post#}
+                <p> Par {{ post.author }}</p>
                 <p class="post-meta">Posté le {{ post.createdAt | date('d/m/Y \H:i:s') }}</p>
             </div>
 
