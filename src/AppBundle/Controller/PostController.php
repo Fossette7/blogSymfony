@@ -93,7 +93,6 @@ class PostController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('post_edit', array('id' => $BlogPost->getId()));
         }
         return $this->render('post/edit.html.twig', array(
@@ -130,7 +129,7 @@ class PostController extends Controller
      *
      * @param Post $blogPost The Post entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(Post $blogPost)
     {

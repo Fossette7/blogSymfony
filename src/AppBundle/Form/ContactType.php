@@ -25,7 +25,7 @@ class ContactType extends AbstractType
     {
        $builder
            ->add('username', TextType::class, array('required' => true))
-           ->add('from', EmailType::class, [
+           ->add('fromEmail', EmailType::class, [
                'required' => true,
                 'label'=>'E-mail'])
            ->add('objet', TextType::class, array('required' => true))

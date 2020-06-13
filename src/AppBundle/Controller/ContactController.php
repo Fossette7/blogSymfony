@@ -27,35 +27,31 @@ class ContactController extends Controller
      */
     public function indexAction(Request $request, \Swift_Mailer $mailer)
     {
+        //empty array to catch data from form
         $ourContactFormData=[];
-        //$this->mailer = $mailer;
 
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
-        //dump($form->isValid());
-       // dump($form->getData());
-        //dump($request->request->all());
-        //die();
+
         if ($form->isSubmitted() && $form->isValid()) {
             if ($request->isMethod('POST')) {
 
                 $ourContactFormData = $form->getData();
 
-                //$mailer = \Swift_Mailer::newInstance($transport);
-                //$mailer = $this->get('mailer');
-                //$message = \Swift_Message::newInstance('objet') //objet du mail
-                $message = (new \Swift_Message('Projet 5 - Blog PHP'))
-                    ->setFrom($ourContactFormData['from'])
+                $message = (new \Swift_Message())
+                    ->setSubject('Projet 5 - Blog PHP - '.$ourContactFormData['objet'])
+                    ->setFrom($ourContactFormData['fromEmail'])
                     ->setTo('reybeka.dev@gmail.com')
-                    ->setContentType($ourContactFormData['username'])
-                    ->setContentType($ourContactFormData['objet'])
                     ->setBody(
-                        $ourContactFormData['message'],
+                        $this->renderView('contact/email.txt.twig', [
+                            'username' => $ourContactFormData['username'],
+                            'emailCustomer' => $ourContactFormData['fromEmail'],
+                            'content' => $ourContactFormData['message']
+                        ]),
                         'text/html'
                     );
                 $mailer->send($message);
 
-                //$this->get('mailer')->send($message);
             }
 
 
