@@ -45,11 +45,12 @@ class HomeController extends Controller
             $page = $request->query->get('page');
         }
          **/
-
+        //manque paramètre page ne se met pas à 1, ici page est a 0
         $page = (int)$request->query->get('page') ?? 1;
 
-        // page controlle
-        if(!is_int($page) || $page > $maxPage || $page < 1){
+        // current page control, if error return page nr.1
+        if(is_string($page) || $page > $maxPage || $page < 1 || $page = 0){
+            $this->addFlash('warning', 'Cette page n\'existe pas! Retour au début de la liste!');
             $page = 1;
         }
         $articleToStart = ($page*$maxArticleToGet)-$maxArticleToGet;
@@ -73,7 +74,6 @@ class HomeController extends Controller
             'allArticles' => $allArticles,
             'page' => $page,
             'numberOfPage' => $maxPage
-
         ));
     }
 

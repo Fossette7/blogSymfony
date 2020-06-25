@@ -2,7 +2,7 @@
 
 namespace AppBundle\Repository;
 
-//use AppBundle\Entity\Comment;
+use AppBundle\Entity\Comment;
 
 /**
  * CommentRepository
@@ -18,4 +18,19 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
     //AS nb_comments
    // FROM AppBundle:Comment;
     //)
+
+    public function getCommentsApprovedForBlog($blogId, $approved = true){
+
+        $query = $this->createQueryBuilder('comment')
+            ->where('comment.id = :id')
+            ->addOrderBy('comment.createdAt')
+            ->setParameter('comment.id', $blogId);
+
+        if(false === is_null($approved))
+            $query->andWhere('comment.approved')
+                ->setParameter('approved',$approved);
+
+            return $query->getQuery()
+                        ->getResult();
+    }
 }

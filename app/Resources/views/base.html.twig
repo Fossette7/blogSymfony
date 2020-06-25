@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
               crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('path/to/font-awesome/css/font-awesome.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}"/>
         <link rel="stylesheet" href="{{ asset('css/clean-blog.css') }}" />
     </head>
     <body>
@@ -42,9 +44,9 @@
                         </li>
                         <li class="nav-item">
                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                                <a class="link" href="{{ path('security_logout') }}">Logout</a>
+                                <a class="link" href="{{ path('security_logout') }}">Se déconnecter</a>
                                 {% else %}
-                                    <a class="nav-link" href="{{ path('login') }}">Login</a>
+                                    <a class="nav-link" href="{{ path('login') }}">Connexion</a>
                             {% endif %}
 
                         </li>
@@ -78,25 +80,30 @@
     </div>
         {% block javascripts %}{% endblock %}
     </body>
+
     {% block footer %}
         <footer>
-            <div class="container">
+            <div class="col-md-12 social-icons">
                 <div class="row">
                     <div class="offset-8 col-lg-4 col-md-10 mx-auto">
 
-                                <a href="https://twitter.com/Gloril7?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @Gloril7</a>
+                                <a href="https://twitter.com/Gloril7?ref_src=twsrc%5Etfw"
+                                   class="twitter-follow-button" data-show-count="false">Follow @Gloril7</a>
                                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                                 </a>
 
 
 
-                                <a class="btn btn-outline-secondary" href="https://github.com/Fossette7/blogSymfony"
-                                   aria-label="Follow @me on GitHub">Follow @me</a>
+
+                                <a href="https://github.com/Fossette7/blogSymfony"
+                                   aria-label="Follow @me on GitHub" class="fab fa-github">Github
+                                </a>
 
 
 
                                 <div class="col-md-12">
-                                    <a type="button" class="badge badge-pill badge-dark" href="{{ path('post_index') }}">Admin access</a>
+                                    <a type="button" class="badge badge-pill badge-dark"
+                                       href="{{ path('post_index') }}">Admin access</a>
                                 </div>
 
 
