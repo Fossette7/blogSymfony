@@ -1,39 +1,41 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Blog_comment</h1>
+    <h1>Un commentaire</h1>
 
-    <table>
+    <table border="6" cellpadding="12" cellspacing="12">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Identifiant</th>
                 <td>{{ comment.id }}</td>
             </tr>
             <tr>
-                <th>Author</th>
+                <th>Auteur</th>
                 <td>{{ comment.author }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>Contenu</th>
                 <td>{{ comment.content }}</td>
             </tr>
             <tr>
-                <th>Createdat</th>
-                <td>{% if comment.createdAt %}{{ comment.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Date de création</th>
+                <td>{% if comment.createdAt %}
+                     {{ comment.createdAt|date('d-m-Y H:i:s') }}
+                    {% endif %}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('comment_index') }}">Back to the list</a>
+            <a href="{{ path('comment_index') }}">Liste des commentaires</a>
         </li>
         <li>
-            <a href="{{ path('comment_edit', { 'id': comment.id }) }}">Edit</a>
+            <a href="{{ path('comment_edit', { 'id': comment.id }) }}">Modifier</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <button class="btn-primary" type="submit" value="Delete">
+            <button class="btn-primary" type="submit" value="Delete">Supprimer</button>
             {{ form_end(delete_form) }}
         </li>
     </ul>

@@ -16,24 +16,24 @@ class PostRepository extends EntityRepository
     //add f 2 parameters
     public function getArticles($nbPerPage, $page)
     {
-        $query = $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
+        $query = $this->createQueryBuilder('articles')
+            ->orderBy('articles.createdAt', 'DESC')
             ->getQuery();
 
         // the first article - offset
         $query->setFirstResult(($page-1) * $nbPerPage)
         // the max display articles
         ->setMaxResults($nbPerPage);
-        //return la query sql dans Paginator
+        //return la query sql dans objet Paginator
         return new Paginator($query);
     }
 
     public function getMaxPublishedArticleCount(){
-        $articleCount = $this->createQueryBuilder('a')
+        $articleCount = $this->createQueryBuilder('articles')
             // Filter by some parameter if you want
             // ->where('a.published = 1')
-            ->select('count(a.id)')
-            ->where('a.published = 1')
+            ->select('count(articles.id)')
+            ->where('articles.published = 1')
             ->getQuery()
             ->getSingleScalarResult();
 
