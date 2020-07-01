@@ -18,19 +18,19 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
     //AS nb_comments
    // FROM AppBundle:Comment;
     //)
-
-    public function getCommentsApprovedForBlog($blogId, $approved = true){
+    public function getCommentsApproved($blogId, $approved = true){
 
         $query = $this->createQueryBuilder('comment')
             ->where('comment.id = :id')
-            ->addOrderBy('comment.createdAt')
+            ->OrderBy('comment.createdAt', 'DESC')
             ->setParameter('comment.id', $blogId);
 
         if(false === is_null($approved))
-            $query->andWhere('comment.approved')
-                ->setParameter('approved',$approved);
+            $query->andWhere('comment.approved = 1')
+                ->setParameter('approved', $approved);
 
-            return $query->getQuery()
-                        ->getResult();
+        return $query->getQuery()
+            ->getResult();
     }
+
 }

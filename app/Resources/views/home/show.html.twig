@@ -23,7 +23,10 @@
                     <section id="commentaires">
                         <h3>Commentaires</h3>
                         <hr>
+
                         {% for comment in post.comments %}
+
+                        {% if comment.approved == 1 %}
                             <div class="comment">
                              <div class="row">
                                     <div class="col-3">
@@ -35,6 +38,8 @@
                                 </div>
                             </div>
                             <hr>
+                        {% endif %}
+
                         {% else %}
                             <p> Il n'y a aucun commentaire.</p>
                         {% endfor %}
