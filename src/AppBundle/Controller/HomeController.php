@@ -38,6 +38,8 @@ class HomeController extends Controller
         $maxArticleOnBdd = $em->getRepository('AppBundle:Post')->getMaxPublishedArticleCount();
         $maxPage = ceil($maxArticleOnBdd/$maxArticleToGet);
 
+        //$approvedComments = $em->getRepository('AppBundle:Post')->getCommentsApproved();
+
         /** if(empty($page))
         {
             $page = 1;
@@ -45,21 +47,23 @@ class HomeController extends Controller
             $page = $request->query->get('page');
         }
          **/
-        //manque paramètre page ne se met pas à 1, ici page est a 0
-        $page = (int)$request->query->get('page') ?? 1;
-
+        //int force $request to be a number
+        $page = (int)($request->query->get('page') ?? 1);
         // current page control, if error return page nr.1
-        if(is_string($page) || $page > $maxPage || $page < 1 || $page = 0){
-            $this->addFlash('warning', 'Cette page n\'existe pas! Retour au début de la liste!');
+        if($page > $maxPage || $page < 1){
+            $this->addFlash('warning', 'Cette page n\'existe pas!');
             $page = 1;
-        }
-        $articleToStart = ($page*$maxArticleToGet)-$maxArticleToGet;
+            //return an empty table = no articles
+            $allArticles = [];
+        } else {
+            $articleToStart = ($page * $maxArticleToGet) - $maxArticleToGet;
 
-        $allArticles = $em->getRepository('AppBundle:Post')->findBy(
-            ['published' => 1],
-            ['createdAt' => 'DESC'],
-            $maxArticleToGet,$articleToStart
-        );
+            $allArticles = $em->getRepository('AppBundle:Post')->findBy(
+                ['published' => 1],
+                ['createdAt' => 'DESC'],
+                $maxArticleToGet, $articleToStart
+            );
+        }
 
         //repository est pour selectionner une entity, on défini la variable
         // $allPosts = $em->getRepository('AppBundle:Post')->findAll();

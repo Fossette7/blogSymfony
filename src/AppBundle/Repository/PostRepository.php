@@ -39,4 +39,5 @@ class PostRepository extends EntityRepository
 
         return $articleCount;
     }
+
 }

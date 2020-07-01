@@ -65,7 +65,7 @@ class Comment
     /**
      * @ORM\Column(name="approved", type="boolean")
      */
-    private $approved = true;
+    private $approved = false;
 
 
     /**
@@ -156,6 +156,8 @@ class Comment
     public function setPost($post)
     {
         $this->post = $post;
+
+        return $this;
     }
 
     /**
@@ -193,9 +195,11 @@ class Comment
     /**
      * @param mixed $approved
      */
-    public function setApproved($approved)
+    public function setApproved(bool $approved)
     {
         $this->approved = $approved;
+
+        return $this;
     }
 
 }

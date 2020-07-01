@@ -30,6 +30,7 @@ class CommentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        //display all comment in back-end manager
         $comments = $em->getRepository('AppBundle:Comment')->findAll();
 
         return $this->render('Comment/index.html.twig', array(
