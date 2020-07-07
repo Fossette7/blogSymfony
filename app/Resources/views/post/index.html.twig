@@ -25,6 +25,7 @@
 
             {% for post in BlogPosts %}
                 <div class="post-preview">
+
                     <a href="{{ path('post_show', { id:post.id }) }}">
                         <p hidden>je suis un numéro id:{{post.id}}</p>
                         <h2 class="post-title">
@@ -36,7 +37,6 @@
                             {# je récupère le contenu en appliquant un truncate pour le châpo#}
                             {{ post.content | truncate(100) }}
                         </h3>
-                        <a class="btn"  href="{{path('post_show', {id: post.id})}}">Lire plus...</a>
                     </a>
 
                 </div>
