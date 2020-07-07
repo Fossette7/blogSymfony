@@ -7,3 +7,10 @@ h1{
 .badge:hover{
 
 }
+img{
+    padding: 10px;
+    margin-top: 20px;
+}
+.pdf{
+    padding: 10px;
+}

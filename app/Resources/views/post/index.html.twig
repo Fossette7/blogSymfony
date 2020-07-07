@@ -10,17 +10,18 @@
 
             <h4>Bienvenue {{ app.user.username }}</h4>
             <br>
-            <div class="offset-4 col-md-4">
+            <div class="btn-group btn-group-justified">
                 <a type="button" class="btn btn-info"
-               href="{{ path('post_new') }}">Créer un nouvel article</a>
-            </div>
+                   href="{{ path('post_new') }}">Créer un nouvel article
+                </a>
             <br>
-            <div class="offset-4 col-md-4">
                 <a type="button" class="btn btn-info"
-               href="{{ path('comment_index') }}">Gérer les commentaires</a>
-
+                   href="{{ path('comment_index') }}">Gérer les commentaires
+                </a>
+            <br>
                 <a type="button" class="btn btn-info"
-               href="{{ path('user_index') }}">Gérer les utilisateurs</a>
+                   href="{{ path('user_index') }}">Gérer les utilisateurs
+                </a>
             </div>
 
             {% for post in BlogPosts %}
