@@ -121,7 +121,7 @@ class UserController extends Controller
             $em->remove($user);
             $em->flush();
         }
-
+        //redirect to list of users
         return $this->redirectToRoute('user_index');
     }
 
@@ -130,7 +130,7 @@ class UserController extends Controller
      *
      * @param User $user The user entity
      *
-     * @return \Symfony\Component\Form\Form The form
+     * @return \Symfony\Component\Form\Form|\Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(User $user)
     {

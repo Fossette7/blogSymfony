@@ -33,4 +33,14 @@ class CommentRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    public function getApprovedComment()
+    {
+        $approvedComment = $this->createQueryBuilder('c')
+            ->select('c')
+            ->where('c.approved = 1');
+
+        return $approvedComment->getQuery()
+            ->getResult();
+    }
+
 }

@@ -27,7 +27,7 @@ class PostType extends AbstractType
                 'label' => 'Auteur'
             ])
             ->add('published', CheckboxType::class,[
-                    'label' => 'publié'
+                    'label' => 'publier'
                 ])
         ;
     }
