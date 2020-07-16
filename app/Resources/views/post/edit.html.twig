@@ -4,27 +4,24 @@
     <h1>Modifier l'article</h1>
 
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
+    {{ form_widget(edit_form) }}
 
-    <div>
-        <p><input type="submit" value="Modifier" class="btn btn-outline-success" /></p>
-        {% if post.published == 1 %}
-            <p><input class="form-check-input" type="checkbox" id="published" value="{{ post.published }}"/>
-            </p>
-            <p><label class="form-check-label" for="published">En ligne</label></p>
-        {% else %}
-            <p><input class="form-check-input" type="checkbox" id="published" value="post.published"/>
-            </p>
-            <p><label class="form-check-label" for="published">Hors ligne</label></p>
-        {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-3 float-left text-center">
+                <input type="submit" value="Modifier"
+                       class="btn btn-outline-success"/></div>
+            <div class="col-3 float-left text-center">
+                <a class="btn btn-outline-secondary"
+                   href="{{ path('post_index') }}">Retour à la liste</a></div>
+            <div class="col-3 float-left text-center">
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" class="btn btn-outline-danger">
+                {{ form_end(delete_form) }}
 
+            </div>
+        </div>
     </div>
 
     {{ form_end(edit_form) }}
-            <a class="btn btn-outline-secondary" href="{{ path('post_index') }}">Retour à la liste</a>
-
-            {{ form_start(delete_form) }}
-                <p><input type="submit" value="Supprimer" class="btn btn-outline-danger"></p>
-            {{ form_end(delete_form) }}
-
 {% endblock %}

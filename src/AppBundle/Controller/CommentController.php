@@ -127,18 +127,40 @@ class CommentController extends Controller
     }
 
     /**
-     * Creates a form to delete a Comment entity.
-     *
-     * @param Comment $Comment The Comment entity
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @param Comment $comment
+     * @return \Symfony\Component\Form\FormInterface
      */
     private function createDeleteForm(Comment $comment)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('comment_delete', array('id' => $comment->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
+    }
+
+    /**
+     * @Route("/approved/{id}", name="comment_approved")
+     */
+    public function approvedComment(Request $request, Comment $comment)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comment->setApproved(true);
+        $em->persist($comment);
+        $em->flush();
+
+        return $this->redirectToRoute('comment_index');
+    }
+
+    /**
+     * @Route("/unapproved/{id}", name="comment_unapproved")
+     */
+    public function unApprovedComment(Request $request, Comment $comment)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $comment->setApproved(false);
+        $em->persist($comment);
+        $em->flush();
+
+        return $this->redirectToRoute('comment_index');
     }
 }

@@ -2,9 +2,9 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,19 +17,23 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class,[
+            ->add('title', TextType::class, [
                 'label' => 'Titre'
             ])
-            ->add('content', TextType::class,[
+            ->add('content', TextType::class, [
                 'label' => 'Contenu'
             ])
-            ->add('author', TextType::class,[
+            ->add('author', TextType::class, [
                 'label' => 'Auteur'
             ])
-            ->add('published', CheckboxType::class,[
-                    'label' => 'publier'
-                ])
-        ;
+            ->add('published', ChoiceType::class, [
+                'label' => 'publier',
+                'choices' => [
+                    'Oui' => true,
+                    'Non' => false,
+                ],
+                'preferred_choices' => ['Oui'],
+            ]);
     }
 
     /**
