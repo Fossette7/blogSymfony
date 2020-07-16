@@ -13,8 +13,11 @@
                     <a class="btn" href="{{ path('comment_show', { 'id': comment.id }) }}">Voir</a>
 
                     <a class="btn" href="{{ path('comment_edit', { 'id': comment.id }) }}">Modérer</a>
-
-                    <a class="btn" href="{{ path('comment_show', { 'id': comment.id }) }}">Approuver</a>
+                    {% if comment.approved == false %}
+                        <a class="btn" style="color: green" href="{{ path('comment_approved', { 'id': comment.id }) }}">Approuver</a>
+                    {% else %}
+                        <a class="btn" style="color: red" href="{{ path('comment_unapproved', { 'id': comment.id }) }}">Désapprouver</a>
+                    {% endif %}
                 </div>
                 <hr>
             {% endfor %}
@@ -24,6 +27,6 @@
     </div>
     </br>
     <div class="offset-6 col-md-4">
-        <a class="btn btn-primary float-right" href="{{path('post_index')}}">Retour au gestionnaire </a>
+        <a class="btn btn-primary float-right" href="{{ path('post_index') }}">Retour au gestionnaire </a>
     </div>
 {% endblock %}
