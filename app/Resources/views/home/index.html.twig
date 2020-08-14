@@ -10,6 +10,7 @@
                 </div>
             {% endfor %}
             {% for currentPost in allArticles %}
+                {% if currentPost.published == true %}
                 <div class="post-preview">
                     <a href="{{ path('home_post_show', { id:currentPost.id }) }}"></a>
                         <h2 class="post-title">
@@ -23,7 +24,8 @@
                <a class="btn"  href="{{path('home_post_show', {id: currentPost.id})}}">Lire plus...</a>
        </div>
        <hr>
-   {% endfor %}
+                {% endif %}
+            {% endfor %}
 
                 <div class="pagination col-md-12" >
                     <div class="offset-2 col-md-4 "></div>

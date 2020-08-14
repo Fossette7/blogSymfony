@@ -65,7 +65,7 @@ class Post
      *
      * @ORM\Column(name="published", type="boolean")
      */
-    private $published = true;
+    private $published;
 
     /**
      * @var Comment
@@ -79,6 +79,7 @@ class Post
     {
         $this->createdAt = new \DateTime('now');
         $this->comments = new ArrayCollection();
+        $this->published = false;
     }
 
     /**
