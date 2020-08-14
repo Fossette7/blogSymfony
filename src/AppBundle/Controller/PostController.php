@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Post controller.
  *
  * @Route("/admin")
- * @IsGranted("ROLE_ADMIN", message="Accès administrateur, veuillez-vous connecter!")
+ * IsGranted("ROLE_ADMIN", message="Accès utilisateur, veuillez-vous connecter!")
  *
  */
 class PostController extends Controller
