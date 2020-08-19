@@ -16,7 +16,7 @@
                     {% if comment.approved == false %}
                         <a class="btn" style="color: green" href="{{ path('comment_approved', { 'id': comment.id }) }}">Approuver</a>
                     {% else %}
-                        <a class="btn" style="color: red" href="{{ path('comment_unapproved', { 'id': comment.id }) }}">Désapprouver</a>
+                        <a class="btn" style="color: red" href="{{ path('comment_unapproved', { 'id': comment.id }) }}">Refuser</a>
                     {% endif %}
                 </div>
                 <hr>

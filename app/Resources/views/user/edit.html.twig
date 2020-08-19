@@ -4,7 +4,12 @@
     <h1>Modifier compte utilisateur</h1>
     <hr>
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
+    {{ form_row(edit_form.username) }}
+    {{ form_row(edit_form.password) }}
+    {{ form_row(edit_form.email) }}
+    {% if edit_form.isActive == true %}
+        {{ form_row(edit_form.isActive) }}
+    {% endif %}
     <p><input type="submit" value="Modifier" class="btn btn-outline-success" /></p>
     {{ form_end(edit_form) }}
 
