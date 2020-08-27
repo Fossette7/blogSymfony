@@ -27,12 +27,12 @@ class PostType extends AbstractType
                 'label' => 'Auteur'
             ])
             ->add('published', ChoiceType::class, [
-                'label' => 'publier',
+                'label' => 'Publier',
                 'choices' => [
                     'Oui' => true,
                     'Non' => false,
                 ],
-                'preferred_choices' => ['Oui'],
+                'preferred_choices' => [false],
             ]);
     }
 

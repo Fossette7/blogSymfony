@@ -8,12 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Post controller.
  *
  * @Route("/admin")
- * @IsGranted("ROLE_ADMIN", message="Accès administrateur, veuillez-vous connecter!")
+ * IsGranted("ROLE_ADMIN", message="Accès utilisateur, veuillez-vous connecter!")
  *
  */
 class PostController extends Controller
@@ -88,13 +89,23 @@ class PostController extends Controller
      */
     public function editPost(Request $request, Post $BlogPost)
     {
+
         $deleteForm = $this->createDeleteForm($BlogPost);
         $editForm = $this->createForm('AppBundle\Form\PostType', $BlogPost);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('post_show', array('id' => $BlogPost->getId()));
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($BlogPost);
+                $em->flush();
+
+                $this->addFlash('success', 'Votre article est modifié');
+
+                return $this->redirectToRoute('post_show', array(
+                    'id' => $BlogPost->getId()
+                ));
+
         }
         return $this->render('post/edit.html.twig', array(
             'post' => $BlogPost,

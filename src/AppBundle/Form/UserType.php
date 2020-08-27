@@ -21,7 +21,9 @@ class UserType extends AbstractType
             ->add('username', TextType::class, ['label' =>'Utilisateur'])
             ->add('password', PasswordType::class)
             ->add('email', EmailType::class)
-            ->add('isActive', CheckboxType::class, ['label' => 'Actif'])
+            ->add('isActive', CheckboxType::class,
+                ['label' => 'Actif',
+                'required' => false ])
         ;
     }/**
      * {@inheritdoc}

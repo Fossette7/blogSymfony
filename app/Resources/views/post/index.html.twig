@@ -25,8 +25,14 @@
             </div>
 
             {% for post in BlogPosts %}
+                {% if post.published == true %}
+                    <hr>
+                    <span class="badge badge-success">En ligne</span>
+                {% else %}
+                    <hr>
+                    <span class="badge badge-secondary">Hors ligne</span>
+                {% endif %}
                 <div class="post-preview">
-
                     <a href="{{ path('post_show', { id:post.id }) }}">
                         <p hidden>je suis un numéro id:{{post.id}}</p>
                         <h2 class="post-title">
@@ -39,16 +45,13 @@
                             {{ post.content | truncate(100) }}
                         </h3>
                     </a>
-
                 </div>
-
                         <a type="button" class="btn btn-outline-secondary"
                         href="{{ path('post_show', { 'id': post.id }) }}">Visualiser</a>
 
                         <a type="button" class="btn btn-outline-secondary"
                         href="{{ path('post_edit', { 'id': post.id }) }}">Modifier</a>
 
-                <hr>
             {% endfor %}
         </div>
 

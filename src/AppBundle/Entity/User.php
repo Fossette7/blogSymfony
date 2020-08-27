@@ -52,10 +52,14 @@ class User implements UserInterface
     /**
      * @var bool|null
      *
-     * @ORM\Column(name="isActive", type="boolean", nullable=true)
+     * @ORM\Column(name="isActive", type="boolean")
      */
-    private $isActive = true;
+    private $isActive;
 
+    public function __construct()
+    {
+        $this->isActive = false;
+    }
 
     /**
      * Get id.

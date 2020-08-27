@@ -9,6 +9,13 @@
             {% for comment in comments %}
                 <div class="comment-preview">
                     <h2><a href="{{ path('comment_show', { 'id': comment.id }) }}">{{ comment.author }}</a></h2>
+                    {% if comment.approved == true %}
+                        <hr>
+                        <span class="badge badge-success">En ligne</span>
+                    {% else %}
+                        <hr>
+                        <span class="badge badge-secondary">Hors ligne</span>
+                    {% endif %}
                     <p>{{ comment.content }}</p>
                     <a class="btn" href="{{ path('comment_show', { 'id': comment.id }) }}">Voir</a>
 
@@ -16,7 +23,7 @@
                     {% if comment.approved == false %}
                         <a class="btn" style="color: green" href="{{ path('comment_approved', { 'id': comment.id }) }}">Approuver</a>
                     {% else %}
-                        <a class="btn" style="color: red" href="{{ path('comment_unapproved', { 'id': comment.id }) }}">Désapprouver</a>
+                        <a class="btn" style="color: red" href="{{ path('comment_unapproved', { 'id': comment.id }) }}">Refuser</a>
                     {% endif %}
                 </div>
                 <hr>

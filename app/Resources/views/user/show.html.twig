@@ -15,21 +15,21 @@
 
                 {# je crée ma zone user#}
                 <div class="user-preview">
-                    <p type="hidden">je suis un numéro id:{{user.id}} </p>
                     <h2 class="user-username">
                         {#je récupère le username#}
                         {{ user.username }}
                     </h2>
+                    <p type="hidden">User id : {{user.id}} </p>
                     <p class="user-email">
                         {{ user.email }}
                     </p>
                     <p class="user-password">
                         {{ user.password }}
                     </p>
-                    <p>{% if user.isActive %}
-                            Actif
+                    <p>{% if user.isActive == true %}
+                    <p>Actif</p>
                         {% else %}
-                            Non actif
+                            <p> Non actif</p>
                         {% endif %}
                     </p>
                     {#j'ajoute la date de mise en ligne du post#}
