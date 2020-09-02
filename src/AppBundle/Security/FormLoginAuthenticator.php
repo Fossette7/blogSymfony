@@ -86,8 +86,13 @@ class FormLoginAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
         //redirect to admin page
-        $homeRoute = $this->router->generate('post_index');
-        return new RedirectResponse($homeRoute);
+        if(in_array('ROLE_ADMIN', $token->getUser()->getRoles()))
+        {
+            $redirectRoute = $this->router->generate('post_index');
+        } else {
+            $redirectRoute = $this->router->generate('home_index');
+        }
+        return new RedirectResponse($redirectRoute);
     }
 
     protected function getLoginUrl()
