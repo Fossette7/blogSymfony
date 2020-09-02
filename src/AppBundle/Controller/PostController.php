@@ -3,18 +3,17 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * Post controller.
  *
  * @Route("/admin")
- * IsGranted("ROLE_ADMIN", message="Accès utilisateur, veuillez-vous connecter!")
+ * @IsGranted("ROLE_ADMIN", message="Accès utilisateur, veuillez-vous connecter!")
  *
  */
 class PostController extends Controller
