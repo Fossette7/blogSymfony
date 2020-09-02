@@ -19,11 +19,13 @@
                 <hr>
             {% endfor %}
 
-            <div class="clearfix"><a class="btn btn-primary float-right" href="#">En haut ↑</a></div>
+            <div class="col-md-12"><a class="btn btn-primary float-right" href="#">En haut ↑</a></div>
         </div>
     </div>
-
-    <div class="offset-2 col-md-2">
-        <a class="btn btn-primary float-right" href="{{path('post_index')}}">Retour au gestionnaire </a>
+    <br>
+    <div class=" col-md-10 ">
+        <span>
+            <a class="btn btn-primary float-right" href="{{path('post_index')}}">Retour au gestionnaire </a>
+        </span>
     </div>
 {% endblock %}
